@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>中交管理系统</title>
+    <style>
+      .index-loader {
+        position: relative;
+        width: 2.5em;
+        height: 2.5em;
+        transform: rotate(165deg);
+      }
+      .index-loader:before, .index-loader:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 0.5em;
+        height: 0.5em;
+        border-radius: 0.25em;
+        transform: translate(-50%, -50%);
+      }
+      .index-loader:before {
+        animation: before 2s infinite;
+      }
+      .index-loader:after {
+        animation: after 2s infinite;
+      }
+
+      @keyframes before {
+        0% {
+          width: 0.5em;
+          box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+        }
+        35% {
+          width: 2.5em;
+          box-shadow: 0 -0.5em rgba(225, 20, 98, 0.75), 0 0.5em rgba(111, 202, 220, 0.75);
+        }
+        70% {
+          width: 0.5em;
+          box-shadow: -1em -0.5em rgba(225, 20, 98, 0.75), 1em 0.5em rgba(111, 202, 220, 0.75);
+        }
+        100% {
+          box-shadow: 1em -0.5em rgba(225, 20, 98, 0.75), -1em 0.5em rgba(111, 202, 220, 0.75);
+        }
+      }
+      @keyframes after {
+        0% {
+          height: 0.5em;
+          box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+        }
+        35% {
+          height: 2.5em;
+          box-shadow: 0.5em 0 rgba(61, 184, 143, 0.75), -0.5em 0 rgba(233, 169, 32, 0.75);
+        }
+        70% {
+          height: 0.5em;
+          box-shadow: 0.5em -1em rgba(61, 184, 143, 0.75), -0.5em 1em rgba(233, 169, 32, 0.75);
+        }
+        100% {
+          box-shadow: 0.5em 1em rgba(61, 184, 143, 0.75), -0.5em -1em rgba(233, 169, 32, 0.75);
+        }
+      }
+      /**
+      * Attempt to center the whole thing!
+      */
+      html,
+      body {
+        height: 100%;
+      }
+      .index-loader {
+        /* position: absolute;
+        top: calc(50% - 1.25em);
+        left: calc(50% - 1.25em); */
+      }
+      .index-loader-ct{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+      }
+      .index-loader-text{
+        /* position: absolute;
+        top: 50%;
+        left: 50%;
+        translate(-50%,-50%); */
+        font-size: 12px;
+        margin-top: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="index-loader-ct">
+        <div class="index-loader"></div>
+        <div class="index-loader-text">加载中...</div>
+      </div>
+    </div>
+    <!-- import cdn js -->
+    <% for(var js of htmlWebpackPlugin.options.cdn.js) { %>
+      <script src="<%=js%>"></script>
+    <% } %>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

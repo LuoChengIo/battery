@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_homepage_default@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#3F95D2" offset="0%"></stop>
+            <stop stop-color="#2875BF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-2-2详情数据-状态" transform="translate(-30.000000, -83.000000)">
+            <g id="侧边菜单" transform="translate(0.000000, 62.000000)">
+                <g id="未选中">
+                    <g id="主页" transform="translate(30.000000, 21.000000)">
+                        <rect id="矩形" x="0" y="0" width="20" height="20"></rect>
+                        <path d="M3.94201698,5.05866317 L7.94201698,2.65866317 C9.20874653,1.89862544 10.7912535,1.89862544 12.057983,2.65866317 L16.057983,5.05866317 C17.2628047,5.78155615 18,7.08358346 18,8.48863487 L18,15.9572067 C18,17.0617762 17.1045695,17.9572067 16,17.9572067 L4,17.9572067 C2.8954305,17.9572067 2,17.0617762 2,15.9572067 L2,8.48863487 C2,7.08358346 2.73719534,5.78155615 3.94201698,5.05866317 Z M6.48333333,13.1572067 C6.06911977,13.1572067 5.73333333,13.4929931 5.73333333,13.9072067 C5.73333333,14.3214202 6.06911977,14.6572067 6.48333333,14.6572067 L12.9833333,14.6572067 C13.3975469,14.6572067 13.7333333,14.3214202 13.7333333,13.9072067 C13.7333333,13.4929931 13.3975469,13.1572067 12.9833333,13.1572067 L6.48333333,13.1572067 Z" id="合并形状" fill="url(#linearGradient-1)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

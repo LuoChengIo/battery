@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_time_list@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#3F95D2" offset="0%"></stop>
+            <stop stop-color="#2875BF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-2-2详情数据-状态" transform="translate(-30.000000, -145.000000)" fill="url(#linearGradient-1)">
+            <g id="侧边菜单" transform="translate(0.000000, 62.000000)">
+                <g id="分组-2" transform="translate(0.000000, 62.000000)">
+                    <g id="主页" transform="translate(30.000000, 21.000000)">
+                        <path d="M10,18 C5.581722,18 2,14.418278 2,10 C2,5.581722 5.581722,2 10,2 C14.418278,2 18,5.581722 18,10 C18,14.418278 14.418278,18 10,18 Z M10.75,9.91415849 L10.75,6 C10.75,5.58578644 10.4142136,5.25 10,5.25 C9.58578644,5.25 9.25,5.58578644 9.25,6 L9.25,10.2222222 C9.25,10.4195972 9.32780425,10.6090164 9.46654121,10.749405 L13.1998745,14.5271828 C13.4910296,14.821804 13.965895,14.8246138 14.2605161,14.5334588 C14.5551373,14.2423038 14.5579472,13.7674383 14.2667921,13.4728172 L10.75,9.91415849 Z" id="合并形状"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
