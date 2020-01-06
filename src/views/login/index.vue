@@ -3,34 +3,32 @@
   <div class="rel hp100">
     <div class="header">
       <div class="hd-ct">
-        <img class="logo dib vm" src="~@/assets/logo@2x.png" alt="" srcset="">
-        <span class="dib vm csd">登录</span>
+        <img class="logo dib vm" src="~@/assets/logo.png" alt="" srcset="">
+        <span class="dib vm csd">电池监控系统</span>
       </div>
     </div>
     <div class="login-bg" />
     <div class="login-box clearfix">
       <div class="l hp100 bg-white right-ct">
-        <h2 class="f30 n text-light login-tie">欢迎登录</h2>
+        <h2 class="f30 n text-dark login-tie">欢迎登录</h2>
         <el-form ref="loginForm" label-position="top" label-suffix=":" :model="loginForm" class="ruleForm">
-          <el-form-item label="用户名">
-            <el-input ref="loginId" v-model="loginForm.loginId" type="text" placeholder="用户名" maxlength="12" />
+          <el-form-item class="mb30">
+            <el-input ref="loginId" v-model="loginForm.loginId" type="text" placeholder="请输入登录账户" maxlength="12">
+              <img slot="prefix" class="vm" src="~@/assets/login/username.png" alt="" srcset="">
+            </el-input>
           </el-form-item>
-          <el-form-item label="密码">
-            <el-input ref="password" v-model="loginForm.password" type="password" placeholder="密码" maxlength="18" />
+          <el-form-item>
+            <el-input ref="password" v-model="loginForm.password" type="password" placeholder="请输入密码" maxlength="18">
+              <img slot="prefix" class="vm" src="~@/assets/login/password.png" alt="" srcset="">
+            </el-input>
+          </el-form-item>
+          <div class="text-danger f12" style="height:20px">{{ errorTip }}</div>
+          <el-form-item>
+            <el-button type="primary" class="pct100" round :loading="loading" @click="submitForm">登录</el-button>
           </el-form-item>
           <el-form-item>
             <el-checkbox v-model="checked">记住我</el-checkbox>
           </el-form-item>
-          <!-- <el-form-item>
-            <el-input v-model="loginForm.captcha" style="width:170px;" placeholder="验证码" maxlength="4" @keyup.enter.native="submitForm" />
-            <span class="captcha poi" @click="refreshCode">
-              <img :src="getCode" alt="" srcset="">
-            </span>
-          </el-form-item> -->
-          <el-form-item>
-            <el-button type="primary" class="pct100" :loading="loading" @click="submitForm">登录</el-button>
-          </el-form-item>
-          <div class="text-danger f12">{{ errorTip }}</div>
         </el-form>
       </div>
     </div>
@@ -165,30 +163,28 @@ export default {
 
 <style lang='scss' scoped>
   .header{
-    height: 82px;
+    height: 100px;
     background-color: #fff;
-    line-height: 82px;
+    line-height: 100px;
     .hd-ct{
       margin-left: 14%;
     }
     .logo{
         margin-right: 20px;
         display: inline-block;
-        height: 28px;
+        height: 60px;
         width: auto;
-        line-height: 28px;
+        line-height: 60px;
     }
     .csd{
-      padding-left: 20px;
-      border-left:2px solid #DDD;
       font-size:24px;
-      line-height: 28px;
+      line-height: 60px;
       color: #333;
     }
   }
   .login-bg{
     position:absolute;
-    top: 82px;
+    top: 100px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -200,32 +196,54 @@ export default {
  .login-box{
    position: absolute;
    top: 50%;
-   right: 14.79%;
+   left: 14%;
   width:340px;
-  height:416px;
+  height:360px;
   background:rgba(255,255,255,1);
     border-radius:4px;
-   margin-top: -170px;
+   margin-top: -180px;
    overflow: hidden;
    z-index: 10;
    box-shadow: 0px 0px 30px 4px rgba(0, 0, 0, 0.1);
  }
  .right-ct{
    width: 100%;
-   padding: 38px 42px 0 42px;
+   padding: 40px 42px 0 42px;
   }
  .login-tie{
    font-size: 18px;
-   margin-bottom: 28px;
+   text-align: center;
+   margin-bottom: 40px;
  }
-  .ruleForm{
+  .ruleForm /deep/{
     .el-form-item{
       margin-bottom: 10px;
+    }
+    .mb30{
+      margin-bottom: 30px;
     }
     label{
       font-size: 12px;
       font-weight: normal;
       line-height: 16px;
+    }
+    .el-input--medium .el-input__inner{
+      border-color: #a0a0a0;
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+    }
+    .el-input__prefix{
+      line-height: 40px;
+    }
+    .el-checkbox__inner{
+      border-color: #a0a0a0;
+    }
+    .el-checkbox__input.is-checked+.el-checkbox__label{
+      color: #1827a4;
+    }
+    .el-checkbox__input.is-checked .el-checkbox__inner{
+      background-color: #1827a4;
     }
   }
   .captcha{
@@ -247,8 +265,9 @@ export default {
    background-color: #fff;
  }
  .el-button--primary{
-   background:linear-gradient(270deg,rgba(79,193,247,1) 0%,rgba(39,141,236,1) 100%);
-   border-color: rgba(79,193,247,1);
-  border-radius:2px;
+   background:#1827a4;
+   border-color:#1827a4;
+   font-size: 16px;
+   padding: 11px 20px;
  }
 </style>

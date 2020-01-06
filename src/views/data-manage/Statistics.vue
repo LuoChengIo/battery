@@ -42,7 +42,6 @@
       <el-table
         v-loading="listLoading"
         :data="tableData"
-        border
         style="width: 100%"
       >
         <el-table-column
