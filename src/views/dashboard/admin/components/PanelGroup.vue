@@ -1,12 +1,12 @@
 <template>
   <el-row :gutter="0" class="panel-group">
     <el-col :span="6" class="card-panel-col">
-      <div class="card-panel bg-item1" @click="handleSetLineChartData('newVisitis')">
+      <div class="card-panel bg-item" @click="handleSetLineChartData('newVisitis')">
         <div class="card-panel-description">
+          <count-to :start-val="0" :end-val="numobj.equipmentCounts" :duration="2600" class="card-panel-num" />
           <div class="card-panel-text">
             总设备数量（个）
           </div>
-          <count-to :start-val="0" :end-val="numobj.equipmentCounts" :duration="2600" class="card-panel-num" />
         </div>
         <!-- <div class="card-panel-icon-wrapper icon-people">
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />
@@ -14,32 +14,33 @@
       </div>
     </el-col>
     <el-col :span="6" class="card-panel-col">
-      <div class="card-panel bg-item2" @click="handleSetLineChartData('messages')">
+      <div class="card-panel bg-item" @click="handleSetLineChartData('messages')">
         <div class="card-panel-description">
+          <count-to :start-val="0" :end-val="numobj.disChargeSum" :duration="3000" class="card-panel-num" />
           <div class="card-panel-text">
             总放电功率(W)
           </div>
-          <count-to :start-val="0" :end-val="numobj.disChargeSum" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
     <el-col :span="6" class="card-panel-col">
-      <div class="card-panel bg-item3" @click="handleSetLineChartData('purchases')">
+      <div class="card-panel bg-item" @click="handleSetLineChartData('purchases')">
         <div class="card-panel-description">
+          <count-to :start-val="0" :end-val="numobj.chargeSum" :duration="3200" class="card-panel-num" />
           <div class="card-panel-text">
             总充电功率(W)
           </div>
-          <count-to :start-val="0" :end-val="numobj.chargeSum" :duration="3200" class="card-panel-num" />
         </div>
+        <img>
       </div>
     </el-col>
     <el-col :span="6" class="card-panel-col">
-      <div class="card-panel bg-item4" @click="handleSetLineChartData('shoppings')">
+      <div class="card-panel bg-item" @click="handleSetLineChartData('shoppings')">
         <div class="card-panel-description">
+          <count-to :start-val="0" :end-val="numobj.carbonReduction" :duration="3600" class="card-panel-num" />
           <div class="card-panel-text">
             减少二氧化碳排放量(L)
           </div>
-          <count-to :start-val="0" :end-val="numobj.carbonReduction" :duration="3600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -76,7 +77,15 @@ export default {
 
 <style lang="scss" scoped>
 .panel-group {
+  background-color: #282c35;
+   height: 190px;
   .card-panel-col {
+    width: 22.32%;
+    height: 140px;
+    margin: 22px;
+  }
+  .bg-item{
+    background-color: #353841;
   }
   .bg-item1{
     background-image: url('../../../../assets/program-management/bg_home_sum01@2x.png');
@@ -95,7 +104,7 @@ export default {
     background-size: 100% 100%;
   }
   .card-panel {
-    height: 108px;
+    height: 140px;;
     cursor: pointer;
     font-size: 12px;
     position: relative;
@@ -161,16 +170,18 @@ export default {
       font-weight: bold;
       margin: 26px;
       margin-left: 25px;
-
       .card-panel-text {
         line-height: 18px;
         color: #fff;
-        font-size: 13px;
+        font-size: 18px;
         margin-bottom: 12px;
+        color: rgb(158,204,253);
+
       }
 
       .card-panel-num {
-        font-size: 26px;
+        font-size: 30px;
+        color: rgb(158,204,253);
       }
     }
   }
