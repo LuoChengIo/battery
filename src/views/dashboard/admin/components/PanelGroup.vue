@@ -5,12 +5,12 @@
         <div class="card-panel-description">
           <count-to :start-val="0" :end-val="numobj.equipmentCounts" :duration="2600" class="card-panel-num" />
           <div class="card-panel-text">
-            总设备数量（个）
+            总设备总数（个）
           </div>
         </div>
-        <!-- <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-        </div> -->
+        <div class="card-panel-icon-wrapper icon-people">
+          <img src="../../../../assets/1-01.png">
+        </div>
       </div>
     </el-col>
     <el-col :span="6" class="card-panel-col">
@@ -20,6 +20,9 @@
           <div class="card-panel-text">
             总放电功率(W)
           </div>
+        </div>
+        <div class="card-panel-icon-wrapper icon-people">
+          <img src="../../../../assets/1-02.png">
         </div>
       </div>
     </el-col>
@@ -31,7 +34,9 @@
             总充电功率(W)
           </div>
         </div>
-        <img>
+        <div class="card-panel-icon-wrapper icon-people">
+          <img src="../../../../assets/1-03.png">
+        </div>
       </div>
     </el-col>
     <el-col :span="6" class="card-panel-col">
@@ -41,6 +46,9 @@
           <div class="card-panel-text">
             减少二氧化碳排放量(L)
           </div>
+        </div>
+        <div class="card-panel-icon-wrapper icon-people">
+          <img src="../../../../assets/1-04.png">
         </div>
       </div>
     </el-col>
@@ -154,7 +162,7 @@ export default {
 
     .card-panel-icon-wrapper {
       float: right;
-      margin: 14px 0 0 14px;
+      margin: 28px 18px;
       padding: 16px;
       transition: all 0.38s ease-out;
       border-radius: 6px;
@@ -168,13 +176,13 @@ export default {
     .card-panel-description {
       float: left;
       font-weight: bold;
-      margin: 26px;
+      margin: 19px;
       margin-left: 25px;
       .card-panel-text {
         line-height: 18px;
         color: #fff;
         font-size: 18px;
-        margin-bottom: 12px;
+        margin: 25px 0px;
         color: rgb(158,204,253);
 
       }

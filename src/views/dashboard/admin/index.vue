@@ -34,10 +34,10 @@
         </div>
       </div>
       <div class="right-ct">
-        <div class="w-card p10">
+        <!-- <div class="w-card p10">
           <h5 class="f14 n title">设备数量</h5>
           <bar-chart :chart-data="barChartData" />
-        </div>
+        </div> -->
         <el-row class="mt10" :gutter="10">
           <el-col :span="12">
             <div class="w-card p10">
@@ -61,7 +61,7 @@
 import { homeCount } from '@/api/home.js'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
-import BarChart from './components/BarChart'
+// import BarChart from './components/BarChart'
 import PieChart from './components/PieChart'
 const warningData = [{
   imgsrc: require('@/assets/icon_warning01@2x.png'),
@@ -101,7 +101,7 @@ export default {
   components: {
     PanelGroup,
     LineChart,
-    BarChart,
+    // BarChart,
     PieChart
   },
   data() {
