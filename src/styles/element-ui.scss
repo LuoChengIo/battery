@@ -120,6 +120,7 @@
     line-height: 16px;
   }
 }
+
 .form-inline{
   .el-date-editor.el-input, .el-date-editor.el-input__inner,.el-input{
     width: 180px;
@@ -141,9 +142,41 @@
     margin-right: 50px;
     margin-bottom: 20px;
   }
+  .el-input__inner{
+    background-color: transparent;
+    border-color: #efefef;
+    color: #efefef;
+    border-radius: 2px;
+    &:hover{
+      background-color: transparent;
+      border-color: #efefef;
+    }
+  }
+  .el-select .el-input__inner:focus,.el-select .el-input.is-focus .el-input__inner{
+    border-color: #efefef;
+  }
+  .el-date-editor .el-range-input{
+    background-color: transparent;
+  }
+  .el-range-separator{
+    color: #efefef;
+  }
+  .el-input.is-disabled .el-input__inner{
+    background-color: #32393f;
+    border-color: #32393f;
+  }
+  
 }
 .el-table{
   color: $primary;
+  
+}
+.el-table--medium th, .el-table--medium td{
+  padding: 15px 0;
+  line-height: 30px;
+}
+.el-table th.is-leaf, .el-table td{
+  border-bottom: none;
 }
 .el-table--border th, .el-table--border td{
  border-color: #D4DBEA !important;
@@ -157,8 +190,12 @@
 .el-table--group::after, .el-table--border::after{
   content: none;
 }
+.el-table th{
+  background-color: #3b3f46;
+}
 .el-table th div{
-  color: #848E98;
+  font-size: 16px;
+  color: #fff;
   font-weight: normal;
 }
 .el-table--border th:nth-last-child(2){
@@ -176,6 +213,16 @@
 .el-table th > .cell{
   line-height: 1.25;
 }
+.el-table::before{
+  content: none;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td{
+  background-color: #3b3f46;
+}
+.el-table tr{
+  background-color: #2f363c;
+  color: #fff;
+}
 #app .sidebar-container .svg-icon{
   font-size: 20px;
   vertical-align: -0.25em;
@@ -189,4 +236,16 @@
 .el-dialog__header{
   padding: 15px 20px;
   border-bottom:  1px solid #eee;
+}
+// pagination
+.el-pagination .el-select .el-input .el-input__inner{
+  background-color: #32393f;
+  border: none;
+}
+.el-pagination.is-background .el-pager li:not(.disabled).active{
+  background-color: #40bef1;
+}
+.el-pagination.is-background .btn-prev, .el-pagination.is-background .btn-next, .el-pagination.is-background .el-pager li{
+  background-color:#32393f ;
+  color: #fff;
 }
