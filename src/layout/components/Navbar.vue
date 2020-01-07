@@ -29,24 +29,25 @@
       title="修改密码"
       :visible.sync="dialogVisible"
       :close-on-click-modal="false"
-      width="500px"
+      width="400px"
+      :show-close="false"
       append-to-body
     >
-      <el-form ref="ruleForm" :model="ruleForm" status-icon :rules="rules" label-width="100px" class="demo-ruleForm">
+      <el-form ref="ruleForm" :model="ruleForm" status-icon :rules="rules" label-width="100px" class="custom-from">
         <el-form-item label="原密码" prop="oldPassword">
           <el-input v-model="ruleForm.oldPassword" type="password" auto-complete="off" />
         </el-form-item>
         <el-form-item label="新密码" prop="password">
           <el-input v-model="ruleForm.password" type="password" auto-complete="off" />
         </el-form-item>
-        <el-form-item label="确认密码" prop="checkPass">
+        <el-form-item class="no-margin" label="确认密码" prop="checkPass">
           <el-input v-model="ruleForm.checkPass" type="password" auto-complete="off" />
         </el-form-item>
       </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="modifyPassword">确 定</el-button>
-      </span>
+      <div slot="footer" class="dialog-footer tc">
+        <el-button type="success" class="dialog-btn" @click="dialogVisible = false">取 消</el-button>
+        <el-button type="danger" class="dialog-btn" @click="modifyPassword">确 定</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>

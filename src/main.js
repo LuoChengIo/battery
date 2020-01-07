@@ -45,6 +45,9 @@ import commonInfo from '@/mixins/common.js'
 Vue.mixin(commonInfo)
 import heightAuto from '@/directive/heightAuto'
 Vue.use(heightAuto)
+import widthAuto from '@/directive/widthAuto'
+Vue.use(widthAuto)
+
 new Vue({
   el: '#app',
   router,

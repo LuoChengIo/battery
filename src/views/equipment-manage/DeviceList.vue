@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline">
+      <el-form :inline="true" :model="searchFrom" size="small" label-width="72px" class="form-inline">
         <el-form-item label="设备ID">
           <el-input v-model="searchFrom.equipmentId" placeholder="请输入设备ID" />
         </el-form-item>
@@ -23,25 +23,21 @@
             <el-option v-for="(item,index) in equipmentStatus" :key="index" :label="item.label" :value="item.value" />
           </el-select>
         </el-form-item>
-        <!-- <el-form-item label="出入库状态">
-          <el-select v-model="searchFrom.status">
-            <el-option label="全部" value="" />
-            <el-option label="未入库" value="1" />
-            <el-option label="已入库" value="2" />
-            <el-option label="已出库" value="3" />
-          </el-select>
-        </el-form-item> -->
+
         <el-form-item>
-          <el-button type="primary" @click="resetFrom">重置</el-button>
-          <el-button type="success" @click="searchSubmit">搜索</el-button>
-          <el-button type="success" icon="el-icon-plus" @click="dialogAddEdit(1)">添加</el-button>
+          <el-button type="primary" class="w120" @click="resetFrom">重置</el-button>
+          <el-button type="success" class="w120" @click="searchSubmit">搜索</el-button>
         </el-form-item>
       </el-form>
     </div>
-    <div v-heightAuto class="mt24 pb20 w-card">
+    <div v-heightAuto class="mt24 p24 w-card">
+      <div class="mb20">
+        <el-button size="large" class="w140" type="warning" @click="dialogAddEdit(1)">添加</el-button>
+      </div>
       <el-table
         v-loading="listLoading"
         :data="tableData"
+        class="blue-thead"
         style="width: 100%"
       >
         <el-table-column
@@ -53,6 +49,7 @@
         <el-table-column
           align="center"
           label="设备ID"
+          min-width="100px"
         >
           <template slot-scope="scope">
             <router-link :to="{ path: '/real/detailed-data', query: { id: scope.row.equipmentId }}">
@@ -64,40 +61,47 @@
           align="center"
           prop="equipmentName"
           label="设备名称"
+          min-width="100px"
         />
         <el-table-column
           align="center"
           prop="companyName"
           label="所属公司"
+          min-width="100px"
         />
         <el-table-column
           align="center"
           prop="equipmentSoftVersion"
           label="软件版本"
+          min-width="100px"
         />
         <el-table-column
           align="center"
           prop="equipmentHardwareVersion"
           label="硬件版本"
+          min-width="100px"
         />
         <el-table-column
           align="center"
           prop="updatetime"
           label="创建时间"
+          width="180px"
           :formatter="dateFormat"
         />
         <el-table-column
           align="center"
           label="在线状态"
+          min-width="100px"
         >
           <template slot-scope="scope">
-            <el-tag v-if="scope.row.isOnline==1" type="success">在线</el-tag>
-            <el-tag v-else type="danger">离线</el-tag>
+            <span v-if="scope.row.isOnline==1" type="success">在线</span>
+            <span v-else type="danger" class="text-warning">离线</span>
           </template>
         </el-table-column>
         <el-table-column
           align="center"
           prop="statename"
+          min-width="100px"
           label="设备状态"
         />
         <!-- <el-table-column
@@ -108,18 +112,18 @@
         <el-table-column
           align="center"
           label="操作"
-          width="450"
+          width="300"
         >
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" @click="dialogAddEdit(2,scope.row)">编辑</el-button>
-            <el-button type="success" size="mini" @click="goToPage(scope.row,1)">查看详情</el-button>
-            <el-button type="warning" size="mini" @click="goToPage(scope.row,2)">命令下发</el-button>
-            <el-button type="danger" size="mini" @click="dialogDdelete(scope.row,scope.$index)">删除</el-button>
+            <img class="img-btn" src="@/assets/bianji.png" title="编辑" @click="dialogAddEdit(2,scope.row)">
+            <img class="img-btn" src="@/assets/chakan.png" title="查看详情" @click="goToPage(scope.row,1)">
+            <img class="img-btn" src="@/assets/reset.png" title="命令下发" @click="goToPage(scope.row,2)">
+            <img class="img-btn" src="@/assets/delete.png" title="删除" @click="dialogDdelete(scope.row,scope.$index)">
           </template>
         </el-table-column>
       </el-table>
-      <div class="pt20 pr30 pl30 tr">
-        <span class="l f13 text-primary">当前显示 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
+      <div class="pt20 pr30 pl30 tc">
+        <span class="page-tisl">当前显示1 到 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
         <el-pagination
           background
           class="dib"
@@ -139,9 +143,10 @@
     <el-dialog
       :title="dialogTitle"
       :visible.sync="dialogVisible"
-      width="645px"
+      :show-close="false"
+      width="400px"
     >
-      <el-form ref="addEditFrom" :inline="true" :rules="rules" :model="formInline" label-width="102px" class="demo-form-inline">
+      <el-form ref="addEditFrom" :rules="rules" label-width="90px" :model="formInline" class="custom-from">
         <el-form-item label="设备编号" prop="equipmentId">
           <el-input v-model="formInline.equipmentId" placeholder="" />
         </el-form-item>
@@ -149,7 +154,7 @@
           <el-input v-model="formInline.equipmentName" maxlength="30" placeholder="" />
         </el-form-item>
         <el-form-item label="所属公司" prop="companyName">
-          <el-select v-model="formInline.companyName" style="width:185px;" filterable placeholder="请选择" @change="companyChange">
+          <el-select v-model="formInline.companyName" filterable placeholder="请选择" @change="companyChange">
             <el-option
               v-for="item in companyInfo.companyList"
               :key="item.companyId"
@@ -158,8 +163,8 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item label="所属用户" prop="adduserid">
-          <el-select v-model="formInline.adduserid" style="width:185px;" filterable placeholder="请选择">
+        <el-form-item class="no-margin" label="所属用户" prop="adduserid">
+          <el-select v-model="formInline.adduserid" filterable placeholder="请选择">
             <el-option
               v-for="item in userList"
               :key="item.userId"
@@ -169,10 +174,10 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="addEditSubmit">确 定</el-button>
-        <el-button @click="dialogVisible = false">关闭</el-button>
-      </span>
+      <div slot="footer" class="dialog-footer tc">
+        <el-button type="danger" class="dialog-btn" @click="addEditSubmit">保存</el-button>
+        <el-button type="success" class="dialog-btn" @click="dialogVisible = false">关闭</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <!-- 登录页面 -->
 <template>
-  <div class="rel hp100">
+  <div class="rel hp100 bg-color">
     <div class="header">
       <div class="hd-ct">
         <img class="logo dib vm" src="~@/assets/logo.png" alt="" srcset="">
@@ -14,12 +14,12 @@
         <el-form ref="loginForm" label-position="top" label-suffix=":" :model="loginForm" class="ruleForm">
           <el-form-item class="mb30">
             <el-input ref="loginId" v-model="loginForm.loginId" type="text" placeholder="请输入登录账户" maxlength="12">
-              <img slot="prefix" class="vm" src="~@/assets/login/username.png" alt="" srcset="">
+              <img slot="prefix" class="vm" src="~@/assets/login/person.png" alt="" srcset="">
             </el-input>
           </el-form-item>
           <el-form-item>
             <el-input ref="password" v-model="loginForm.password" type="password" placeholder="请输入密码" maxlength="18">
-              <img slot="prefix" class="vm" src="~@/assets/login/password.png" alt="" srcset="">
+              <img slot="prefix" class="vm" src="~@/assets/login/lock.png" alt="" srcset="">
             </el-input>
           </el-form-item>
           <div class="text-danger f12" style="height:20px">{{ errorTip }}</div>
@@ -182,16 +182,20 @@ export default {
       color: #333;
     }
   }
+  .bg-color{
+    background:linear-gradient(90deg,rgba(25,38,166,1) 0%,rgba(6,17,123,1) 100%);
+  }
   .login-bg{
     position:absolute;
     top: 100px;
     left: 0;
     right: 0;
     bottom: 0;
-    background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('~@/assets/login/bg_login.jpg');
+    background-size: auto;
+    background-attachment:fixed;
+    background-image: url('~@/assets/login/illustrater.png');
+    background-position: 83% 55.5%;
   }
  .login-box{
    position: absolute;
