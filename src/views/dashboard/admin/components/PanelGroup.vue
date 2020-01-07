@@ -179,7 +179,7 @@ export default {
       margin: 19px;
       margin-left: 25px;
       .card-panel-text {
-        line-height: 18px;
+        line-height: 20px;
         color: #fff;
         font-size: 18px;
         margin: 25px 0px;
@@ -188,7 +188,7 @@ export default {
       }
 
       .card-panel-num {
-        font-size: 30px;
+        font-size: 36px;
         color: rgb(158,204,253);
       }
     }

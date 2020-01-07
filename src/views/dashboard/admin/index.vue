@@ -3,34 +3,38 @@
     <panel-group :numobj="equipmentChargeSum" />
     <div class="mt10">
       <div class="w-card left-ct p10">
-        <h5 class="f14 n title">警告数量</h5>
+        <!-- <h5 class="f14 n title">警告数量</h5> -->
         <el-row :gutter="20" class="tc blue-title mt20">
-          <el-col :span="12">
+          <!-- <el-col :span="12">
             故障等级
           </el-col>
           <el-col :span="12">
             数量
-          </el-col>
+          </el-col> -->
           <!-- <el-col :span="8">
             同比
           </el-col> -->
         </el-row>
-        <el-row v-for="(item,index) in warningData" :key="index" class="mt20 mb20 f13">
-          <el-col :span="12" class="text-primary">
-            <router-link :to="{ path: '/real/time-list', query: { failure: item.value }}">
-              <img class="warn-icon" :src="item.imgsrc" alt="" srcset="">
-              {{ item.title }}
-            </router-link>
-          </el-col>
-          <el-col :span="12" :class="item.myclass" class="tc">
-            {{ item.quantity }}
-          </el-col>
+        <div style="width:50%;float:left">
+          <img src="../../../assets/data.png">
+          <h5 class="f24 n title">警告数量</h5>
+          <line-chart :chart-data="lineChartData" />
+        </div>
+        <div style="width:50%;float:left">
+          <el-row v-for="(item,index) in warningData" :key="index" class="mt20 mb20 f13">
+            <el-col :span="12" class="text-primary">
+              <router-link :to="{ path: '/real/time-list', query: { failure: item.value }}">
+                <img class="warn-icon" :src="item.imgsrc" alt="" srcset="">
+                {{ item.title }}
+              </router-link>
+            </el-col>
+            <el-col :span="12" :class="item.myclass" class="tc">
+              {{ item.quantity }}
+            </el-col>
           <!-- <el-col :span="8" :class="item.myclass" class="tc">
             {{ item.yearonyear }}
           </el-col> -->
-        </el-row>
-        <div>
-          <line-chart :chart-data="lineChartData" />
+          </el-row>
         </div>
       </div>
       <div class="right-ct">
@@ -41,13 +45,13 @@
         <el-row class="mt10" :gutter="10">
           <el-col :span="12">
             <div class="w-card p10">
-              <h5 class="f14 n title">设备在线状态</h5>
+              <h5 class="f24 n title">设备在线状态</h5>
               <pie-chart :chart-data="pieChartData1" />
             </div>
           </el-col>
           <el-col :span="12">
             <div class="w-card p10">
-              <h5 class="f14 n title">设备充电状态</h5>
+              <h5 class="f24 n title">设备充电状态</h5>
               <pie-chart :chart-data="pieChartData2" />
             </div>
           </el-col>
@@ -139,14 +143,14 @@ export default {
         this.equipmentChargeSum = equipmentChargeSum
         // 在线图标
         this.pieChartData1 = [
-          { value: equipmentChargeSum.onLine || 0, legendname: '在线', name: '在线', itemStyle: { color: '#3FAFFF' }},
-          { value: equipmentChargeSum.offLine || 0, legendname: '离线', name: '离线', itemStyle: { color: '#4C4C4C' }}
+          { value: equipmentChargeSum.onLine || 0, legendname: '在线', name: '在线', itemStyle: { color: '#3147EB' }},
+          { value: equipmentChargeSum.offLine || 0, legendname: '离线', name: '离线', itemStyle: { color: '#E7C86B' }}
         ]
         this.pieChartData2 = [
-          { value: equipmentChargeSum.chargeState || 0, legendname: '充电状态', name: '充电状态', itemStyle: { color: '#3FAFFF' }},
-          { value: equipmentChargeSum.defendState || 0, legendname: '保护状态', name: '保护状态', itemStyle: { color: '#F37272' }},
-          { value: equipmentChargeSum.disChargeState || 0, legendname: '放电状态', name: '放电状态', itemStyle: { color: '#3366F3' }},
-          { value: equipmentChargeSum.checkState || 0, legendname: '自检', name: '自检状态', itemStyle: { color: '#8D64FF' }}
+          { value: equipmentChargeSum.chargeState || 0, legendname: '充电', name: '充电', itemStyle: { color: '#6060F6' }},
+          { value: equipmentChargeSum.defendState || 0, legendname: '保护', name: '保护', itemStyle: { color: '#E76AB4' }},
+          { value: equipmentChargeSum.checkState || 0, legendname: '自检', name: '自检', itemStyle: { color: '#6DCFEA' }},
+          { value: equipmentChargeSum.disChargeState || 0, legendname: '放电', name: '放电', itemStyle: { color: '#E7C86B' }}
         ]
         if (res) {
           this.warningData.forEach(element => {
@@ -172,7 +176,7 @@ export default {
 .dashboard-editor-container {
   .title{
     position: relative;
-    color:#001C37;
+    color:#F4FBFF;
     padding-left: 8px;
     &::after{
       content: '';
@@ -181,7 +185,8 @@ export default {
       top: 4px;
       width:2px;
       height: 12px;
-      background:rgba(39,141,236,1);
+      // background:rgba(39,141,236,1);
+      background-image: url('../../../assets/data.png');
       border-radius:2px;
     }
   }
@@ -192,9 +197,9 @@ export default {
     margin-right: 10px;
   }
   .left-ct{
-    float: left;
-    width: 350px;
-    min-height: 723px;
+    // float: left;
+    width: 100%;
+    min-height: 450px;
     .blue-title{
       font-size:13px;
       line-height: 36px;
@@ -203,7 +208,7 @@ export default {
     }
   }
   .right-ct{
-    margin-left: 360px;
+    // margin-left: 360px;
   }
 }
 </style>
