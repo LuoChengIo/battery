@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline my-inline-form">
+      <el-form :inline="true" :model="searchFrom" label-width="72px" size="small" class="form-inline my-inline-form">
         <el-form-item label="设备ID">
           <el-input v-model="searchFrom.equipmentId" placeholder="请输入设备ID" />
         </el-form-item>
@@ -12,72 +12,104 @@
           <el-input v-model="searchFrom.companyName" disabled placeholder="" />
         </el-form-item>
         <el-form-item>
-          <el-button type="success" :loading="searchLoading" @click="searchSubmit">搜索</el-button>
-          <el-button type="primary" @click="readDevice">读取</el-button>
+          <el-button type="success" class="w120" :loading="searchLoading" @click="searchSubmit">搜索</el-button>
+          <el-button type="primary" class="w120" @click="readDevice">读取</el-button>
         </el-form-item>
       </el-form>
     </div>
-    <div v-heightAuto class="mt20 p20 w-card">
-      <h5 class="title mb20">电流参数 <el-checkbox v-model="checkAll1" class="ml20" @change="(val)=>checkAllHandle(currentParameter,val)">全选</el-checkbox></h5>
-      <el-form :inline="true" class="form-inline my-inline-form">
-        <el-form-item v-for="(item,index) in currentParameter" :key="index">
-          <el-checkbox v-model="item.checked" @change="checkMousd('checkAll1',currentParameter)" />
-          <span class="w150">{{ item.text }}</span>
-          <el-input v-model="item.value" :disabled="!item.checked" placeholder="请输入内容" />
-        </el-form-item>
-      </el-form>
-      <h5 class="title mb20">单体电压参数<el-checkbox v-model="checkAll2" class="ml20" @change="(val)=>checkAllHandle(monomerVoltageParameter,val)">全选</el-checkbox></h5>
-      <el-form :inline="true" class="form-inline my-inline-form">
-        <el-form-item v-for="(item,index) in monomerVoltageParameter" :key="index">
-          <el-checkbox v-model="item.checked" @change="checkMousd('checkAll2',monomerVoltageParameter)" />
-          <span class="w150">{{ item.text }}</span>
-          <el-input v-model="item.value" :disabled="!item.checked" placeholder="请输入内容" />
-        </el-form-item>
-      </el-form>
-      <h5 class="title mb20">总电压参数<el-checkbox v-model="checkAll3" class="ml20" @change="(val)=>checkAllHandle(totalVoltageParameter,val)">全选</el-checkbox></h5>
-      <el-form :inline="true" class="form-inline my-inline-form">
-        <el-form-item v-for="(item,index) in totalVoltageParameter" :key="index">
-          <el-checkbox v-model="item.checked" @change="checkMousd('checkAll3',totalVoltageParameter)" />
-          <span class="w150">{{ item.text }}</span>
-          <el-input v-model="item.value" :disabled="!item.checked" placeholder="请输入内容" />
-        </el-form-item>
-      </el-form>
-      <h5 class="title mb20">充电参数<el-checkbox v-model="checkAll4" class="ml20" @change="(val)=>checkAllHandle(chargingParameter,val)">全选</el-checkbox></h5>
-      <el-form :inline="true" class="form-inline my-inline-form">
-        <el-form-item v-for="(item,index) in chargingParameter" :key="index">
-          <el-checkbox v-model="item.checked" @change="checkMousd('checkAll4',chargingParameter)" />
-          <span class="w150">{{ item.text }}</span>
-          <el-input v-model="item.value" :disabled="!item.checked" placeholder="请输入内容" />
-        </el-form-item>
-      </el-form>
-      <h5 class="title mb20">放电参数<el-checkbox v-model="checkAll5" class="ml20" @change="(val)=>checkAllHandle(dischargeParameter,val)">全选</el-checkbox></h5>
-      <el-form :inline="true" class="form-inline my-inline-form">
-        <el-form-item v-for="(item,index) in dischargeParameter" :key="index">
-          <el-checkbox v-model="item.checked" @change="checkMousd('checkAll5',dischargeParameter)" />
-          <span class="w150">{{ item.text }}</span>
-          <el-input v-model="item.value" :disabled="!item.checked" placeholder="请输入内容" />
-        </el-form-item>
-      </el-form>
-      <h5 class="title mb20">其他参数<el-checkbox v-model="checkAll6" class="ml20" @change="(val)=>checkAllHandle(elseParameter,val)">全选</el-checkbox></h5>
-      <el-form :inline="true" class="form-inline my-inline-form">
-        <el-form-item v-for="(item,index) in elseParameter" :key="index">
-          <el-checkbox v-model="item.checked" @change="checkMousd('checkAll6',elseParameter)" />
-          <span class="w150">{{ item.text }}</span>
-          <el-input v-if="!item.type" v-model="item.value" :disabled="!item.checked" placeholder="请输入内容" />
-          <el-select v-else v-model="item.value" :disabled="!item.checked" placeholder="请选择">
-            <el-option
-              v-for="citem in item.options"
-              :key="citem.value"
-              :label="citem.name"
-              :value="citem.value"
-            />
-          </el-select>
-        </el-form-item>
-      </el-form>
+    <div v-heightAuto class="mt20 p24 w-card">
+      <el-collapse v-model="activeNames">
+        <el-collapse-item name="1">
+          <template slot="title">
+            <img class="mr10" src="~@/assets/detailed-data/dianliu.png" alt="" srcset="">
+            电流参数 <el-checkbox v-model="checkAll1" class="ml20" @change="(val)=>checkAllHandle(currentParameter,val)">全选</el-checkbox>
+          </template>
+          <el-form :inline="true" class="form-inline my-inline-form">
+            <el-form-item v-for="(item,index) in currentParameter" :key="index">
+              <el-checkbox v-model="item.checked" @change="checkMousd('checkAll1',currentParameter)" />
+              <span class="w150">{{ item.text }}</span>
+              <el-input v-model="item.value" v-widthAuto="0.08" :disabled="!item.checked" placeholder="请输入内容" />
+            </el-form-item>
+          </el-form>
+        </el-collapse-item>
+        <el-collapse-item name="2">
+          <template slot="title">
+            <img class="mr10" src="~@/assets/detailed-data/dianya.png" alt="" srcset="">
+            单体电压参数<el-checkbox v-model="checkAll2" class="ml20" @change="(val)=>checkAllHandle(monomerVoltageParameter,val)">全选</el-checkbox>
+          </template>
+          <el-form :inline="true" class="form-inline my-inline-form">
+            <el-form-item v-for="(item,index) in monomerVoltageParameter" :key="index">
+              <el-checkbox v-model="item.checked" @change="checkMousd('checkAll2',monomerVoltageParameter)" />
+              <span class="w150">{{ item.text }}</span>
+              <el-input v-model="item.value" v-widthAuto="0.08" :disabled="!item.checked" placeholder="请输入内容" />
+            </el-form-item>
+          </el-form>
+        </el-collapse-item>
+        <el-collapse-item name="3">
+          <template slot="title">
+            <img class="mr10" src="~@/assets/detailed-data/zongya.png" alt="" srcset="">
+            总电压参数<el-checkbox v-model="checkAll3" class="ml20" @change="(val)=>checkAllHandle(totalVoltageParameter,val)">全选</el-checkbox>
+          </template>
+          <el-form :inline="true" class="form-inline my-inline-form">
+            <el-form-item v-for="(item,index) in totalVoltageParameter" :key="index">
+              <el-checkbox v-model="item.checked" @change="checkMousd('checkAll3',totalVoltageParameter)" />
+              <span class="w150">{{ item.text }}</span>
+              <el-input v-model="item.value" v-widthAuto="0.08" :disabled="!item.checked" placeholder="请输入内容" />
+            </el-form-item>
+          </el-form>
+        </el-collapse-item>
+        <el-collapse-item name="4">
+          <template slot="title">
+            <img class="mr10" src="~@/assets/detailed-data/chongdian.png" alt="" srcset="">
+            充电参数<el-checkbox v-model="checkAll4" class="ml20" @change="(val)=>checkAllHandle(chargingParameter,val)">全选</el-checkbox>
+          </template>
+          <el-form :inline="true" class="form-inline my-inline-form">
+            <el-form-item v-for="(item,index) in chargingParameter" :key="index">
+              <el-checkbox v-model="item.checked" @change="checkMousd('checkAll4',chargingParameter)" />
+              <span class="w150">{{ item.text }}</span>
+              <el-input v-model="item.value" v-widthAuto="0.08" :disabled="!item.checked" placeholder="请输入内容" />
+            </el-form-item>
+          </el-form>
+        </el-collapse-item>
+        <el-collapse-item name="5">
+          <template slot="title">
+            <img class="mr10" src="~@/assets/detailed-data/fangdian.png" alt="" srcset="">
+            放电参数<el-checkbox v-model="checkAll5" class="ml20" @change="(val)=>checkAllHandle(dischargeParameter,val)">全选</el-checkbox>
+          </template>
+          <el-form :inline="true" class="form-inline my-inline-form">
+            <el-form-item v-for="(item,index) in dischargeParameter" :key="index">
+              <el-checkbox v-model="item.checked" @change="checkMousd('checkAll5',dischargeParameter)" />
+              <span class="w150">{{ item.text }}</span>
+              <el-input v-model="item.value" v-widthAuto="0.08" :disabled="!item.checked" placeholder="请输入内容" />
+            </el-form-item>
+          </el-form>
+        </el-collapse-item>
+        <el-collapse-item name="6">
+          <template slot="title">
+            <img class="mr10" src="~@/assets/detailed-data/anather.png" alt="" srcset="">
+            其他参数<el-checkbox v-model="checkAll6" class="ml20" @change="(val)=>checkAllHandle(elseParameter,val)">全选</el-checkbox>
+          </template>
+          <el-form :inline="true" class="form-inline my-inline-form">
+            <el-form-item v-for="(item,index) in elseParameter" :key="index">
+              <el-checkbox v-model="item.checked" @change="checkMousd('checkAll6',elseParameter)" />
+              <span class="w150">{{ item.text }}</span>
+              <el-input v-if="!item.type" v-model="item.value" v-widthAuto="0.08" :disabled="!item.checked" placeholder="请输入内容" />
+              <el-select v-else v-model="item.value" v-widthAuto="0.08" :disabled="!item.checked" placeholder="请选择">
+                <el-option
+                  v-for="citem in item.options"
+                  :key="citem.value"
+                  :label="citem.name"
+                  :value="citem.value"
+                />
+              </el-select>
+            </el-form-item>
+          </el-form>
+        </el-collapse-item>
+      </el-collapse>
       <div class="mt30 tc">
-        <el-button type="primary" :loading="searchLoading" @click="searchSubmit">重置</el-button>
+        <el-button type="primary" class="w140" :loading="searchLoading" @click="searchSubmit">重置</el-button>
         <el-tooltip content="只对勾选中的值进行命令下发！" placement="top">
-          <el-button type="success" @click="submitFrom">下发</el-button>
+          <el-button type="success" class="w140" @click="submitFrom">下发</el-button>
         </el-tooltip>
       </div>
     </div>
@@ -98,6 +130,7 @@ export default {
         companyName: '',
         companyId: ''
       },
+      activeNames: ['1'],
       activeItem: {},
       searchLoading: false,
       valueFrom: {},
@@ -402,9 +435,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.my-inline-form{
+.my-inline-form /deep/{
   .el-form-item__content,.el-form-item{
     vertical-align: middle;
+  }
+  .el-form-item{
+    margin-right: 45px;
+  }
+  .el-input{
+    width: 100%;
   }
 }
 .title{
@@ -423,5 +462,36 @@ export default {
 }
 .cont-minheight{
   min-height: 740px;
+}
+.w-card /deep/{
+  .el-collapse{
+    border: none;
+  }
+  .el-collapse-item__header{
+    padding: 0 25px 0 20px;
+    height:60px;
+    line-height: 60px;
+    background:rgba(51,55,64,1);
+    border-bottom: 2px solid #282C35;
+    color: #fff;
+    font-size: 20px;
+    .el-icon-arrow-right:before{
+      content: "\e792";
+    }
+    .el-collapse-item__arrow.is-active {
+      transform: rotate(-90deg);
+    }
+  }
+  .el-collapse-item__wrap{
+    background:rgba(44,48,57,1);
+    border-bottom: none;
+    padding: 28px 24px 8px 24px;
+  }
+  .el-collapse-item__content{
+    padding-bottom: 0;
+  }
+  .el-collapse-item__content,.el-checkbox__label{
+    color: #fff;
+  }
 }
 </style>
