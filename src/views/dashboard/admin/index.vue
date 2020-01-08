@@ -15,12 +15,12 @@
             同比
           </el-col> -->
         </el-row>
-        <div style="width:50%;float:left">
-          <img src="../../../assets/data.png">
+        <div class="model">
+          <img src="@/assets/icon_warning01@2x.png" class="img-icon">
           <h5 class="f24 n title">警告数量</h5>
           <line-chart :chart-data="lineChartData" />
         </div>
-        <div style="width:50%;float:left">
+        <div class="model">
           <el-row v-for="(item,index) in warningData" :key="index" class="mt20 mb20 f13">
             <el-col :span="12" class="text-primary">
               <router-link :to="{ path: '/real/time-list', query: { failure: item.value }}">
@@ -45,12 +45,14 @@
         <el-row class="mt10" :gutter="10">
           <el-col :span="12">
             <div class="w-card p10">
+              <img src="@/assets/data.png" class="img-icon">
               <h5 class="f24 n title">设备在线状态</h5>
               <pie-chart :chart-data="pieChartData1" />
             </div>
           </el-col>
           <el-col :span="12">
             <div class="w-card p10">
+              <img src="@/assets/data1.png" class="img-icon">
               <h5 class="f24 n title">设备充电状态</h5>
               <pie-chart :chart-data="pieChartData2" />
             </div>
@@ -177,7 +179,7 @@ export default {
   .title{
     position: relative;
     color:#F4FBFF;
-    padding-left: 8px;
+    padding-left: 36px;
     &::after{
       content: '';
       position:absolute;
@@ -207,8 +209,13 @@ export default {
       background-color: #DEEFFF;
     }
   }
-  .right-ct{
-    // margin-left: 360px;
+  .img-icon{
+    position: absolute;
+  }
+  .model{
+    width:50%;
+    float:left;
+    background-color:#282C35;
   }
 }
 </style>
