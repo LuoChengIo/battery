@@ -1,14 +1,7 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline">
-        <!-- <el-form-item label="是否掉线">
-          <el-select v-model="searchFrom.statusName">
-            <el-option label="全部" value="" />
-            <el-option label="正常" value="1" />
-            <el-option label="掉线" value="0" />
-          </el-select>
-        </el-form-item> -->
+      <el-form :inline="true" :model="searchFrom" size="small" label-width="72px" class="form-inline">
         <el-form-item label="时间范围">
           <el-date-picker
             v-model="searchFrom.rangeDate"
@@ -24,13 +17,13 @@
           <el-input v-model="searchFrom.equipmentId" placeholder="请输入设备ID" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="resetFrom">重置</el-button>
-          <el-button type="success" @click="searchSubmit">搜索</el-button>
+          <el-button type="primary" class="w120" @click="resetFrom">重置</el-button>
+          <el-button type="success" class="w120" @click="searchSubmit">搜索</el-button>
         </el-form-item>
         <br>
         <el-form-item label="故障等级">
           <el-radio-group v-model="searchFrom.failure">
-            <el-radio v-for="item in faultLevel" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
+            <el-radio v-for="(item,index) in faultLevel" :key="item.value" :class="'radio'+index" :label="item.value">{{ item.label }}</el-radio>
           </el-radio-group>
         </el-form-item>
       </el-form>
@@ -90,14 +83,14 @@
           width="120"
           label="状态功能码"
         />
-        <el-table-column align="center" width="140px" label="电压（最高|最低）">
+        <el-table-column align="center" width="160px" label="电压（最高|最低）">
           <template slot-scope="scope">
             <div>
               {{ scope.row.oneBatteryVoltageHigh }}|{{ scope.row.oneBatteryVoltageLow }}
             </div>
           </template>
         </el-table-column>
-        <el-table-column align="center" width="140px" label="温度（最高|最低）">
+        <el-table-column align="center" width="160px" label="温度（最高|最低）">
           <template slot-scope="scope">
             <div>
               {{ scope.row.highTemperature }}|{{ scope.row.lowTemperature }}
@@ -107,19 +100,19 @@
         <el-table-column
           align="center"
           prop="sysProbe"
-          width="140px"
+          width="150"
           label="总电流（单位A）"
         />
         <el-table-column
           align="center"
           prop="sysVoltage"
-          width="140px"
+          width="150"
           label="总电压（单位V）"
         />
         <el-table-column
           align="center"
           prop="voltageDifference"
-          width="140px"
+          width="140"
           label="压差（单位V）"
         />
         <el-table-column
@@ -136,8 +129,8 @@
           label="信息采集时间"
         />
       </el-table>
-      <div class="pt20 pr30 pl30 tr">
-        <span class="l f13 text-primary">当前显示 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
+      <div class="pt20 pr30 pl30 tc">
+        <span class="page-tisl">当前显示1 到 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
         <el-pagination
           background
           class="dib"
@@ -235,5 +228,61 @@ export default {
 <style lang="scss" scoped>
   .cont-minheight{
     min-height: 740px;
+
+  }
+  .search-card /deep/{
+    .el-radio__inner{
+      width: 12px;
+      height: 12px;
+    }
+    .el-radio__input.is-checked {
+      .el-radio__inner{
+        background-color: #fff;
+        &::after{
+          width: 8px;
+          height: 8px;
+        }
+      }
+    }
+    .radio1 {
+      .el-radio__input.is-checked {
+        .el-radio__inner{
+          border-color: #e42421;
+          &::after{
+            background-color: #e42421;
+          }
+        }
+      }
+    }
+    .radio2 {
+      .el-radio__input.is-checked {
+        .el-radio__inner{
+          border-color: #f4741d;
+          &::after{
+            background-color: #f4741d;
+          }
+        }
+      }
+    }
+    .radio3 {
+      .el-radio__input.is-checked {
+        .el-radio__inner{
+          border-color: #f9ed1d;
+          &::after{
+            background-color: #f9ed1d;
+          }
+        }
+      }
+    }
+    .radio4,.radio0 {
+      .el-radio__input.is-checked {
+        .el-radio__inner{
+          border-color: #4241f4;
+          &::after{
+            background-color: #4241f4;
+          }
+        }
+      }
+    }
   }
 </style>

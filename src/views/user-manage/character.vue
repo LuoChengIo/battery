@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline">
+      <el-form :inline="true" :model="searchFrom" size="small" label-width="72px" class="form-inline">
         <el-form-item label="角色ID">
           <el-input v-model="searchFrom.roleId" placeholder="请输入角色ID" />
         </el-form-item>
@@ -26,79 +26,69 @@
           </el-autocomplete>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="resetFrom">重置</el-button>
-          <el-button type="success" @click="searchSubmit">搜索</el-button>
-          <el-button type="success" icon="el-icon-plus" @click="dialogAddEdit(1)">新增</el-button>
+          <el-button type="primary" class="w120" @click="resetFrom">重置</el-button>
+          <el-button type="success" class="w120" @click="searchSubmit">搜索</el-button>
         </el-form-item>
       </el-form>
     </div>
-    <div class="mt20">
-      <el-row :gutter="20">
-        <el-col :span="18">
-          <div v-heightAuto class="w-card pb20">
-            <el-table
-              v-loading="listLoading"
-              :data="tableData"
-              border
-              style="width: 100%"
-              @row-click="rowClick"
-            >
-              <el-table-column
-                align="center"
-                prop="roleId"
-                label="角色ID"
-              />
-              <el-table-column
-                align="center"
-                prop="roleName"
-                label="角色名称"
-              />
-              <el-table-column
-                align="center"
-                prop="ascriptionCompanyName"
-                label="所属公司"
-              />
-              <el-table-column
-                align="center"
-                prop="createTime"
-                :formatter="dateFormat"
-                label="创建时间"
-              />
-              <el-table-column
-                align="center"
-                label="操作"
-                width="250"
-              >
-                <template slot-scope="scope">
-                  <el-button type="primary" size="mini" @click.stop="dialogAddEdit(2,scope.row)">编辑</el-button>
-                  <el-button type="danger" size="mini" @click="dialogDdelete(scope.row,scope.$index)">删除</el-button>
-                </template>
-              </el-table-column>
-            </el-table>
-            <div class="pt20 pr30 pl30 tr">
-              <span class="l f13 text-primary">当前显示 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
-              <el-pagination
-                background
-                class="dib"
-                prev-text="上一页"
-                next-text="下一页"
-                :current-page="searchFrom.pageNo"
-                :page-sizes="page.pageSizes"
-                :page-size="searchFrom.pageRows"
-                :total="searchFrom.total"
-                layout="sizes, prev, pager, next"
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-              />
-            </div>
-          </div></el-col>
-        <el-col :span="6">
-          <div v-heightAuto v-loading="treeLoading" class="w-card p20">
-            <h4 class="n pb10 f14 ell" :title="activeRowTItle">角色权限列表【{{ activeRowTItle }}】</h4>
-            <el-tree :data="treeData" :default-expand-all="true" :props="defaultProps" />
-          </div>
-        </el-col>
-      </el-row>
+    <div v-heightAuto class="w-card p20 mt24">
+      <div class="mb20">
+        <el-button size="large" class="w140" type="warning" @click="dialogAddEdit(1)">新增</el-button>
+      </div>
+      <el-table
+        v-loading="listLoading"
+        :data="tableData"
+        style="width: 100%"
+        @row-click="rowClick"
+      >
+        <el-table-column
+          align="center"
+          prop="roleId"
+          label="角色ID"
+        />
+        <el-table-column
+          align="center"
+          prop="roleName"
+          label="角色名称"
+        />
+        <el-table-column
+          align="center"
+          prop="ascriptionCompanyName"
+          label="所属公司"
+        />
+        <el-table-column
+          align="center"
+          prop="createTime"
+          :formatter="dateFormat"
+          label="创建时间"
+        />
+        <el-table-column
+          align="center"
+          label="操作"
+          width="250"
+        >
+          <template slot-scope="scope">
+            <img class="img-btn" src="@/assets/bianji.png" title="编辑" @click="dialogAddEdit(2,scope.row)">
+            <img class="img-btn" src="@/assets/delete.png" title="删除" @click="dialogDdelete(scope.row,scope.$index)">
+          </template>
+        </el-table-column>
+      </el-table>
+      <div class="pt20 pr30 pl30 tc">
+        <span class="page-tisl">当前显示1 到 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
+        <el-pagination
+          background
+          class="dib"
+          prev-text="上一页"
+          next-text="下一页"
+          :current-page="searchFrom.pageNo"
+          :page-sizes="page.pageSizes"
+          :page-size="searchFrom.pageRows"
+          :total="searchFrom.total"
+          layout="sizes, prev, pager, next"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+        />
+      </div>
     </div>
     <!-- 弹框 -->
     <el-dialog

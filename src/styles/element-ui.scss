@@ -34,6 +34,9 @@
     width: 60px;
   }
 }
+.el-button.w100{
+  min-width: 100px;
+}
 .el-button.w120{
   min-width: 120px;
 }
@@ -181,6 +184,13 @@
   .el-range-editor--medium .el-range-separator{
     width: 24px;
   }
+  .el-radio .el-radio__label{
+    color: #fff !important;
+    .el-radio__inner::after{
+      width: 6px;
+      height: 6px;
+    }
+  }
   .el-form-item__label{
     font-size: 13px;
     padding-right: 0;
@@ -206,9 +216,11 @@
     border-color: #efefef;
   }
   .el-date-editor .el-range-input{
+    color: #efefef;
     background-color: transparent;
   }
   .el-range-separator{
+    width: 20px;
     color: #efefef;
   }
   .el-input.is-disabled .el-input__inner{
@@ -312,4 +324,7 @@
 }
 .el-loading-mask{
   background-color: rgba(47,54,60,.9);
+}
+.el-table__empty-block{
+  background-color:#32393f ;
 }

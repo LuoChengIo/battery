@@ -1,10 +1,14 @@
 
 <template>
   <div>
-    <div class="text-red">上传成功，为Bata版，只推送标记为测试设备；如需推广全部设备，需要手工操作，设置为正式版。</div>
-    <div v-heightAuto class="mt24 pb20 w-card">
-      <el-table v-loading="listLoading" :data="tableData" border style="width: 100%">
-        <el-table-column label="序号" align="center" type="index" width="40" prop="id" />
+    <div class="text-red">
+      <img class="img-btn mr10" src="@/assets/program-management/jingao.png">
+      说明：上传成功，为Beta版,只推送标记为测试设备；如需推广全部设备，需要手工操作，设置为正式版。
+
+    </div>
+    <div v-heightAuto class="mt24 p20 w-card">
+      <el-table v-loading="listLoading" :data="tableData" class="blue-thead" style="width: 100%">
+        <el-table-column label="序号" align="center" type="index" width="60" prop="id" />
         <el-table-column align="center" prop="equipmentProgramName" label="程序名称" />
         <el-table-column align="center" prop="equipmentSoftVersion" label="软件版本" />
         <el-table-column align="center" prop="equipmentHardwareVersion" label="硬件版本" />
@@ -15,7 +19,7 @@
           </template>
         </el-table-column>
         <el-table-column align="center" prop="addtime" sortable label="操作时间" :formatter="dateFormat" />
-        <el-table-column align="center" prop="data1" label="操作" width="200">
+        <el-table-column align="center" prop="data1" label="操作" width="130">
           <template slot-scope="scope">
             <el-upload
               class="upload-demo"
@@ -25,16 +29,14 @@
               :on-success="handleSuccess"
               :before-upload="beforeUpload"
             >
-              <el-button type="primary" size="small">上传</el-button>
+              <img class="img-btn" src="@/assets/program-management/shangchuan.png" title="上传">
             </el-upload>
-            <el-button type="success" size="small" :disabled="scope.row.state == 2" @click="releaseVersion(scope.row)">发布正式版</el-button>
+            <img v-if="scope.row.state == 2" class="img-btn" src="@/assets/program-management/fasong.png" title="发布正式版" @click="releaseVersion(scope.row)">
           </template>
         </el-table-column>
       </el-table>
-      <div class="pt20 pr30 pl30 tr">
-        <span
-          class="l f13 text-primary"
-        >当前显示 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
+      <div class="pt20 pr30 pl30 tc">
+        <span class="page-tisl">当前显示1 到 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
         <el-pagination
           background
           class="dib"
@@ -43,7 +45,7 @@
           :current-page="searchFrom.pageNo"
           :page-sizes="page.pageSizes"
           :page-size="searchFrom.pageRows"
-          :total="searchFrom.totalPages"
+          :total="searchFrom.total"
           layout="sizes, prev, pager, next"
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -235,9 +237,10 @@ export default {
   margin-right: 25px;
   display: inline-block;
 }
-// .el-table .cell{
-//   /deep/ .upload-demo{
-//     float: left;
-//   }
-//}
+.text-red{
+  line-height: 80px;
+  padding: 0 24px;
+  background-color: #272e34;
+  color: #fff;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline">
+      <el-form :inline="true" :model="searchFrom" size="small" label-width="72px" class="form-inline">
         <el-form-item label="开始时间">
           <el-date-picker
             v-model="searchFrom.startDateBak"
@@ -25,19 +25,8 @@
         <el-form-item label="设备名称">
           <el-input v-model="searchFrom.equipmentName" placeholder="请输入设备名称" />
         </el-form-item>
-        <!-- <el-form-item label="所属公司">
-          <el-select v-model="searchFrom.companyId" filterable placeholder="请选择">
-            <el-option
-              v-for="item in companyInfo.companyList"
-              :key="item.companyId"
-              :label="item.companyName"
-              :value="item.companyId"
-            />
-          </el-select>
-        </el-form-item> -->
         <el-form-item label="所属用户">
           <el-cascader v-model="searchFrom.userArr" :show-all-levels="false" :props="casprops" />
-          <!-- <el-input v-model="searchFrom.userId" placeholder="请输入所属用户" /> -->
         </el-form-item>
         <el-form-item label="硬件版本">
           <el-input v-model="searchFrom.equipmentSoftVersion" placeholder="硬件版本" />
@@ -77,9 +66,9 @@
           <el-input v-model="searchFrom.temperatureDifference" placeholder="温差值" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="resetFrom">重置</el-button>
-          <el-button type="success" @click="searchSubmit">搜索</el-button>
-          <el-button type="success" @click="exportFrom">导出</el-button>
+          <el-button type="primary" class="w100" @click="resetFrom">重置</el-button>
+          <el-button type="danger" class="w100" @click="searchSubmit">搜索</el-button>
+          <el-button type="success" class="w100" @click="exportFrom">导出</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -152,8 +141,8 @@
           :formatter="dateFormat"
         />
       </el-table>
-      <div class="pt20 pr30 pl30 tr">
-        <span class="l f13 text-primary">当前显示 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
+      <div class="pt20 pr30 pl30 tc">
+        <span class="page-tisl">当前显示1 到 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
         <el-pagination
           background
           class="dib"

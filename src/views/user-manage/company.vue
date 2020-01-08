@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline">
+      <el-form :inline="true" :model="searchFrom" size="small" label-width="72px" class="form-inline">
         <el-form-item label="公司ID">
           <el-input v-model="searchFrom.companyId" placeholder="请输入公司ID" />
         </el-form-item>
@@ -9,13 +9,15 @@
           <el-input v-model="searchFrom.companyName" placeholder="请输入公司名称" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="resetFrom">重置</el-button>
-          <el-button type="success" @click="searchSubmit">搜索</el-button>
-          <el-button type="success" icon="el-icon-plus" @click="dialogCompany(1)">新增</el-button>
+          <el-button type="primary" class="w120" @click="resetFrom">重置</el-button>
+          <el-button type="success" class="w120" @click="searchSubmit">搜索</el-button>
         </el-form-item>
       </el-form>
     </div>
-    <div v-heightAuto class="mt24 pb20 w-card">
+    <div v-heightAuto class="mt24 p20 w-card">
+      <div class="mb20">
+        <el-button size="large" class="w140" type="warning" @click="dialogCompany(1)">新增</el-button>
+      </div>
       <el-table
         v-loading="listLoading"
         :data="tableData"
@@ -59,14 +61,14 @@
           width="450"
         >
           <template slot-scope="scope">
-            <el-button type="info" size="mini" @click="dialogCompany(2,scope.row)">查看</el-button>
-            <el-button type="primary" size="mini" @click="dialogCompany(3,scope.row)">编辑</el-button>
-            <el-button type="danger" size="mini" @click="deleteCompany(scope.row,scope.$index)">删除</el-button>
+            <img class="img-btn" src="@/assets/chakan.png" title="查看" @click="dialogCompany(2,scope.row)">
+            <img class="img-btn" src="@/assets/bianji.png" title="编辑" @click="dialogCompany(3,scope.row)">
+            <img class="img-btn" src="@/assets/delete.png" title="删除" @click="deleteCompany(scope.row,scope.$index)">
           </template>
         </el-table-column>
       </el-table>
-      <div class="pt20 pr30 pl30 tr">
-        <span class="l f13 text-primary">当前显示 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
+      <div class="pt20 pr30 pl30 tc">
+        <span class="page-tisl">当前显示1 到 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
         <el-pagination
           background
           class="dib"

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline">
+      <el-form :inline="true" :model="searchFrom" size="small" label-width="72px" class="form-inline">
         <el-form-item label="用户ID">
           <el-input v-model="searchFrom.operatorId" placeholder="请输入用户ID" />
         </el-form-item>
@@ -33,13 +33,15 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="resetFrom">重置</el-button>
-          <el-button type="success" @click="searchSubmit">搜索</el-button>
-          <el-button type="success" icon="el-icon-plus" @click="operationHandle('',6)">新增</el-button>
+          <el-button type="primary" class="w120" @click="resetFrom">重置</el-button>
+          <el-button type="success" class="w120" @click="searchSubmit">搜索</el-button>
         </el-form-item>
       </el-form>
     </div>
-    <div v-heightAuto class="mt24 pb20 w-card">
+    <div v-heightAuto class="mt24 p20 w-card">
+      <div class="mb20">
+        <el-button size="large" class="w140" type="warning" @click="operationHandle('',6)">新增</el-button>
+      </div>
       <el-table
         v-loading="listLoading"
         :data="tableData"
@@ -75,8 +77,8 @@
           label="状态"
         >
           <template slot-scope="scope">
-            <el-tag v-if="scope.row.status==='0'" type="success">启用</el-tag>
-            <el-tag v-else type="danger">停用</el-tag>
+            <span v-if="scope.row.status==='0'" type="success">启用</span>
+            <span v-else type="danger" class="text-danger">停用</span>
           </template>
         </el-table-column>
         <el-table-column
@@ -88,19 +90,19 @@
         <el-table-column
           align="center"
           label="操作"
-          width="450"
+          width="250"
         >
           <template slot-scope="scope">
-            <el-button type="info" size="mini" @click="operationHandle(scope.row,1)">查看</el-button>
-            <el-button type="primary" size="mini" @click="operationHandle(scope.row,2)">编辑</el-button>
-            <el-button v-if="scope.row.status=='0'" type="warning" size="mini" status @click="operationHandle(scope.row,3)">停用</el-button>
-            <el-button v-if="scope.row.status=='1'" type="success" size="mini" @click="operationHandle(scope.row,4)">启用</el-button>
-            <el-button type="warning" size="mini" @click="operationHandle(scope.row,5)">密码重置</el-button>
+            <img class="img-btn" src="@/assets/chakan.png" title="查看" @click="operationHandle(scope.row,1)">
+            <img class="img-btn" src="@/assets/bianji.png" title="编辑" @click="operationHandle(scope.row,2)">
+            <img v-if="scope.row.status=='0'" class="img-btn" src="@/assets/stop.png" title="停用" @click="operationHandle(scope.row,3)">
+            <img v-if="scope.row.status=='1'" class="img-btn" src="@/assets/use.png" title="启用" @click="operationHandle(scope.row,4)">
+            <img class="img-btn" src="@/assets/reset.png" title="密码重置" @click="operationHandle(scope.row,5)">
           </template>
         </el-table-column>
       </el-table>
-      <div class="pt20 pr30 pl30 tr">
-        <span class="l f13 text-primary">当前显示 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
+      <div class="pt20 pr30 pl30 tc">
+        <span class="page-tisl">当前显示1 到 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
         <el-pagination
           background
           class="dib"

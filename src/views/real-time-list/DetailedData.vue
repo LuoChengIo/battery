@@ -1,26 +1,17 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline">
+      <el-form :inline="true" :model="searchFrom" size="small" label-width="72px" class="form-inline">
         <el-form-item label="设备ID">
           <el-input v-model="searchFrom.equipmentId" placeholder="请输入设备ID" />
         </el-form-item>
-        <!-- <el-form-item label="所属公司">
-          <el-select v-model="searchFrom.companyName" filterable placeholder="请选择">
-            <el-option
-              v-for="item in companyInfo.companyList"
-              :key="item.companyId"
-              :label="item.companyName"
-              :value="item.companyName"
-            />
-          </el-select>
-        </el-form-item> -->
         <el-form-item label="设备名称">
           <el-input v-model="searchFrom.equipmentName" disabled placeholder="" />
         </el-form-item>
         <el-form-item label="所属公司">
           <el-input v-model="searchFrom.companyName" disabled placeholder="" />
         </el-form-item>
+        <br>
         <el-form-item label="所属用户">
           <el-input v-model="searchFrom.adduserid" disabled placeholder="" />
         </el-form-item>
@@ -30,9 +21,10 @@
         <el-form-item label="硬件版本">
           <el-input v-model="searchFrom.equipmentHardwareVersion" disabled placeholder="" />
         </el-form-item>
+        <br>
         <el-form-item>
-          <el-button type="success" :loading="queryLoading" @click="querySearch()">搜索</el-button>
-          <el-button type="success" @click="goToPage">命令下发</el-button>
+          <el-button type="primary" class="w120" :loading="queryLoading" @click="querySearch()">搜索</el-button>
+          <el-button type="success" class="w120" @click="goToPage">设置设备参数</el-button>
         </el-form-item>
       </el-form>
     </div>

@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="w-card search-card">
-      <el-form :inline="true" :model="searchFrom" label-width="72px" class="form-inline">
+      <el-form :inline="true" :model="searchFrom" size="small" label-width="72px" class="form-inline">
         <el-form-item label="设备ID">
           <el-input v-model="searchFrom.equipmentId" placeholder="请输入设备ID" />
         </el-form-item>
@@ -22,7 +22,7 @@
           />
         </el-form-item>
         <el-form-item>
-          <el-button type="success" @click="searchSubmit">搜索</el-button>
+          <el-button type="primary" class="w120" @click="searchSubmit">搜索</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -55,43 +55,43 @@
           align="center"
           prop="charge"
           label="充电电量（kWh）"
-          width="140"
+          width="150"
         />
         <el-table-column
           align="center"
           prop="discharge"
           label="放电电量（kWh）"
-          width="140"
+          width="150"
         />
         <el-table-column
           align="center"
           prop="chargeTime"
           label="充电总时长（h）"
-          width="130"
+          width="150"
         />
         <el-table-column
           align="center"
           prop="dischargeTime"
           label="放电总时长（h）"
-          width="130"
+          width="150"
         />
         <el-table-column
           align="center"
           prop="chargeProbe"
           label="最大充电电流（A）"
-          width="150"
+          width="160"
         />
         <el-table-column
           align="center"
           prop="dischargeProbe"
           label="最大放电电流（A）"
-          width="150"
+          width="160"
         />
         <el-table-column
           align="center"
           prop="voltageDifference"
           label="最大压差（V）"
-          width="120"
+          width="130"
         />
         <el-table-column
           align="center"
@@ -102,31 +102,36 @@
         <el-table-column
           align="center"
           prop="highVoltageSysNo"
+          width="200"
           label="最高单体电压电池箱编号"
         />
         <el-table-column
           align="center"
+          width="220"
           prop="highVoltageOneBatteryNo"
           label="最高单体电压电池单体编号"
         />
         <el-table-column
           align="center"
+          width="180"
           prop="oneBatteryVoltageHigh"
           label="最高单体电压值（V）"
         />
         <el-table-column
           align="center"
           prop="lowVoltageSysNo"
+          width="200"
           label="最低单体电压电池箱编号"
         />
         <el-table-column
           align="center"
+          width="220"
           prop="lowVoltageOneBatteryNo"
           label="最低单体电压单体电池编号"
         />
       </el-table>
-      <div class="pt20 pr30 pl30 tr">
-        <span class="l f13 text-primary">当前显示 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
+      <div class="pt20 pr30 pl30 tc">
+        <span class="page-tisl">当前显示1 到 {{ searchFrom.currentSize }} 条，共 {{ searchFrom.total }} 条记录</span>
         <el-pagination
           background
           class="dib"
