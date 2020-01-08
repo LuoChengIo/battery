@@ -338,6 +338,7 @@ export default {
         }).then(() => {
           this.tableData.splice(index, 1)
           this.$message.success('删除成功！')
+          this.searchSubmit()
         }).catch(() => {
         })
       }).catch(() => {
