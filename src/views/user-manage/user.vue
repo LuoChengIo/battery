@@ -123,11 +123,12 @@
       :title="dialogTitle"
       :close-on-click-modal="false"
       :visible.sync="dialogVisible"
-      width="830px"
+      :show-close="false"
+      width="988px"
     >
       <div>
-        <div class="dg-right-ct dialog-boder-card">
-          <div class="mb5 bd1 p5">
+        <div class="dg-right-ct ">
+          <div class="mb5 f18">
             角色权限
           </div>
           <el-tree
@@ -140,7 +141,7 @@
           />`
         </div>
         <div class="dg-left-ct">
-          <el-form class="dialog-boder-card mb15 demo-form-inline pt15" style="min-height: 191px;" :inline="true" :model="formInline" :disabled="formInline.disabled" label-width="90px">
+          <el-form class="custom-from" :disabled="formInline.disabled" label-width="72px" style="min-height: 191px;" :inline="true" :model="formInline">
             <el-form-item v-if="dialogType==1||dialogType==2" label="账户ID">
               <el-input v-model="formInline.userId" disabled placeholder="" />
             </el-form-item>
@@ -150,7 +151,6 @@
             <el-form-item label="所属公司">
               <el-autocomplete
                 v-model="formInline.ascriptionCompanyName"
-                style="width:155px;"
                 popper-class="my-autocomplete"
                 value-key="companyName"
                 :fetch-suggestions="querySearch"
@@ -176,16 +176,16 @@
               <el-input v-model="formInline.subOperatorNum" maxlength="30" placeholder="" />
             </el-form-item>
           </el-form>
-          <div class="dialog-boder-card p10">
-            <el-transfer v-model="formInline.transfer" :data="transferData" :right-default-checked="rightDefaultchecked" @right-check-change="transferChange" />
+          <div class="transfer p10">
+            <el-transfer v-model="formInline.transfer" :titles="['可选角色', '已选角色']" :data="transferData" :right-default-checked="rightDefaultchecked" @right-check-change="transferChange" />
           </div>
         </div>
 
       </div>
-      <span slot="footer" class="dialog-footer">
-        <el-button v-if="dialogType!==1" type="primary" @click="addEditSubmit">确 定</el-button>
-        <el-button @click="dialogVisible = false">关闭</el-button>
-      </span>
+      <div slot="footer" class="dialog-footer tc">
+        <el-button v-if="dialogType!==1" type="danger" class="dialog-btn" @click="addEditSubmit">确定</el-button>
+        <el-button type="success" class="dialog-btn" @click="dialogVisible = false">关闭</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -501,5 +501,8 @@ export default {
     .el-input{
       width: 155px;
     }
+  }
+  .transfer{
+    border-top: 1px solid #333;
   }
 </style>

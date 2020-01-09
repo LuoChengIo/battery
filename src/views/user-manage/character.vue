@@ -68,6 +68,7 @@
           width="250"
         >
           <template slot-scope="scope">
+            <img class="img-btn" src="@/assets/chakan.png" title="查看" @click="queryDetails(scope.row)">
             <img class="img-btn" src="@/assets/bianji.png" title="编辑" @click="dialogAddEdit(2,scope.row)">
             <img class="img-btn" src="@/assets/delete.png" title="删除" @click="dialogDdelete(scope.row,scope.$index)">
           </template>
@@ -94,9 +95,10 @@
     <el-dialog
       :title="dialogTitle"
       :visible.sync="dialogVisible"
-      width="670px"
+      :show-close="false"
+      width="400px"
     >
-      <el-form :inline="true" :model="formInline" :disabled="formInline.disabled" label-width="102px" class="demo-form-inline">
+      <el-form :inline="true" :model="formInline" :disabled="formInline.disabled" label-position="left" label-width="104px" class="custom-from rel">
         <el-form-item v-if="dialogType===2" label="角色ID">
           <el-input v-model="formInline.roleId" disabled placeholder="" />
         </el-form-item>
@@ -122,25 +124,51 @@
             </template>
           </el-autocomplete>
         </el-form-item>
-        <div class="mb5">
-          <el-checkbox v-model="checkedAll" @change="checkedAllHadle">全选角色权限</el-checkbox>
-        </div>
         <div class="tree-ct">
-          <el-tree
-            ref="vuetree"
-            :data="treeDialogData"
-            show-checkbox
-            default-expand-all
-            node-key="id"
-            highlight-current
-            :props="defaultProps"
-          />
+          <div class="casda">
+            可配置权限<el-checkbox v-model="checkedAll" @change="checkedAllHadle" />
+          </div>
+          <el-scrollbar style="height:100%">
+            <el-tree
+              ref="vuetree"
+              :data="treeDialogData"
+              show-checkbox
+              default-expand-all
+              node-key="id"
+              highlight-current
+              :props="defaultProps"
+            />
+          </el-scrollbar>
         </div>
       </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="addEditSubmit">确 定</el-button>
-        <el-button @click="dialogVisible = false">关闭</el-button>
-      </span>
+      <div slot="footer" class="dialog-footer tc">
+        <el-button type="danger" class="dialog-btn" @click="addEditSubmit">确定</el-button>
+        <el-button type="success" class="dialog-btn" @click="dialogVisible = false">关闭</el-button>
+      </div>
+    </el-dialog>
+    <el-dialog
+      title="查看角色权限"
+      :visible.sync="dialogVisible2"
+      :show-close="false"
+      width="400px"
+    ><div class="tree-ct no-border">
+       <div class="casda">
+         角色权限列表
+       </div>
+       <el-scrollbar style="height:100%">
+         <el-tree
+           ref="vuetree2"
+           :data="treeDialogData2"
+           default-expand-all
+           node-key="id"
+           highlight-current
+           :props="defaultProps"
+         />
+       </el-scrollbar>
+     </div>
+      <div slot="footer" class="dialog-footer tc">
+        <el-button type="success" class="dialog-btn" @click="dialogVisible2 = false">关闭</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -154,6 +182,7 @@ export default {
   data() {
     return {
       defaultSearchFrom: {},
+      dialogVisible2: false,
       searchFrom: {
         roleId: '',
         roleName: '',
@@ -180,6 +209,7 @@ export default {
         checkAll: false
       },
       treeDialogData: [],
+      treeDialogData2: [],
       treeData: [],
       activeRowTItle: '',
       defaultProps: {
@@ -341,6 +371,27 @@ export default {
       }
       this.dialogVisible = true
     },
+    queryDetails(item) {
+      this.getFunctions({
+        companyId: item.ascriptionCompanyId
+      }, () => {
+        this.getRoleFunction(item, (res) => {
+          const data = res.roleFunctionList
+          data.loginId = data.adminId
+          function dataFor(tree) {
+            tree.forEach(element => {
+              element.id = element.functionId
+              if (element.twoLevelFunctionList && element.twoLevelFunctionList.length) {
+                dataFor(element.twoLevelFunctionList)
+              }
+            })
+          }
+          dataFor(data)
+          this.treeDialogData2 = data
+        })
+      })
+      this.dialogVisible2 = true
+    },
     dialogDdelete(item, index) { // 删除角色
       this.$confirm('删除后角色将不可用，是否确认删除？', '提示', {
         confirmButtonText: '确定',
@@ -413,11 +464,45 @@ export default {
   .cont-minheight{
     min-height: 740px;
   }
-  .tree-ct{
-    border:1px solid #ddd;
-    padding: 10px;
-    height: 300px;
+  .tree-ct /deep/{
+    position: relative;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding-top: 30px;
+    height: 170px;
     border-radius: 2px;
-    overflow-y: auto;
+    .casda{
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 0;
+    }
+    .el-scrollbar__wrap{
+      overflow-x: auto;
+    }
+    .el-tree-node__label{
+      font-size: 12px;
+    }
+    .el-tree-node__content>.el-tree-node__expand-icon{
+      padding: 4px;
+    }
+    .el-tree-node__content{
+      height: 20px;
+    }
+    .el-checkbox__inner{
+      width: 12px;
+      height: 12px;
+    }
+    .el-tree-node__content>label.el-checkbox {
+      margin-right: 5px;
+    }
+    .el-checkbox__inner::after{
+      left: 3px;
+      top: 0;
+    }
+  }
+  .no-border {
+    border: none;
+    margin-top: -20px;
   }
 </style>

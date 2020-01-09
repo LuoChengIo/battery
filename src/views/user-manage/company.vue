@@ -88,16 +88,17 @@
     <el-dialog
       :title="dialogTitle"
       :visible.sync="dialogVisible"
-      width="655px"
+      :show-close="false"
+      width="600px"
     >
-      <el-form :inline="true" :model="formInline" :disabled="formInline.disabled" label-width="102px" class="demo-form-inline">
+      <el-form :inline="true" :model="formInline" :disabled="formInline.disabled" label-position="left" label-width="104px" class="custom-from rel">
         <el-form-item v-if="dialogType!==1" label="公司ID">
           <el-input v-model="formInline.companyId" disabled placeholder="" />
         </el-form-item>
         <el-form-item label="公司名称">
           <el-input v-model="formInline.companyName" maxlength="30" placeholder="" />
         </el-form-item>
-        <el-form-item label="公司logo">
+        <el-form-item label="公司logo" class="custom-logo">
           <el-upload
             class="avatar-uploader"
             action=""
@@ -110,10 +111,10 @@
             <i v-else class="el-icon-plus avatar-uploader-icon" />
           </el-upload>
         </el-form-item>
-        <el-form-item label="超管名称">
+        <el-form-item :class="{'no-margin':dialogType!==1}" label="超管名称">
           <el-input v-model="formInline.loginId" maxlength="12" placeholder="" />
         </el-form-item>
-        <el-form-item v-if="dialogType===1" label="超管登录密码">
+        <el-form-item v-if="dialogType===1" :class="{'no-margin':dialogType===1}" label="超管登录密码">
           <el-input v-model="formInline.wpassword" type="password" maxlength="18" placeholder="" />
         </el-form-item>
         <div v-if="false" class="mb5">
@@ -132,10 +133,10 @@
           />
         </div>
       </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button v-if="dialogType!==2" type="primary" @click="addEditSubmit">确 定</el-button>
-        <el-button @click="dialogVisible = false">关闭</el-button>
-      </span>
+      <div slot="footer" class="dialog-footer tc">
+        <el-button v-if="dialogType!==2" type="danger" class="dialog-btn" @click="addEditSubmit">确定</el-button>
+        <el-button type="success" class="dialog-btn" @click="dialogVisible = false">关闭</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -420,22 +421,22 @@ export default {
     min-height: 740px;
   }
   .avatar-uploader {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    width: 186px;
-    height: 36px;
-    line-height: 36px;
+    width: 100%;
+    width: 173px;
+    height: 106px;
+    line-height: 100px;
     text-align: center;
+    background: rgba(246,246,246,1);
     .avatar-uploader-icon{
-      width: 186px;
-      height: 36px;
+      width: 173px;
+      height: 106px;
     }
     .avatar{
-      max-width: 186px;
-      max-height: 36px;
+      max-width: 173px;
+      max-height: 106px;
     }
   }
   .el-image-ct{
@@ -448,5 +449,21 @@ export default {
     height: 300px;
     border-radius: 2px;
     overflow-y: auto;
+  }
+  .custom-from /deep/{
+    .custom-logo{
+      position: absolute;
+      border: 1px solid #626262;
+      top: 0px;
+      right: 0px;
+      width: 194px;
+      height: 152px;
+      padding: 10px;
+      margin: 0;
+      .el-form-item__label{
+        line-height: 15px;
+        margin-bottom: 10px;
+      }
+    }
   }
 </style>
