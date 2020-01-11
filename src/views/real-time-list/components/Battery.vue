@@ -1,46 +1,34 @@
 <template>
-  <div>
-    <div class="w-card battery-ct">
-      <div class="mb10">
-        <el-tag v-for="(item,index) in equipmenbatterys" :key="item.batterySysNo" :type="activeIndex===index?'success':'info'" class="mr10 poi" @click="tabclick(index)">{{ item.batterySysNo }}</el-tag>
-      </div>
-      <h2 class="tc f18 text-primary mb40">总电压<span class="ml15">{{ VoltageNum }}V</span></h2>
-
-      <el-row :gutter="38">
-        <el-col :span="12">
-          <div class="gray-card">
-            <div class="tc battery-num">
-              <div class="f22 text-primary">{{ activeItem.batteryNumber }}</div>
-              <p class="f14 text-secondary">电池数据</p>
-            </div>
-            <div com class="voltage flex text-primary flex-align-center">
-              <div>
-                <div v-for="(item,index) in activeItem.batteryVolages" :key="item.id" class="voltage-item ">
-                  <span class="dib vm battery-icon">{{ index+1 }}</span>
-                  <span class="dib vm f18">{{ item.oneBatteryVolage }}V</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </el-col>
-        <el-col :span="12">
-          <div class="gray-card">
-            <div class="tc battery-num temperature">
-              <div class="f22 text-primary">{{ activeItem.probeNumber }}</div>
-              <p class="f14 text-secondary">温度点数</p>
-            </div>
-            <div com class="voltage flex text-primary flex-align-center">
-              <div>
-                <div v-for="(item,index) in activeItem.batteryProbes" :key="item.id" class="voltage-item temperature">
-                  <span class="dib vm battery-icon temperature">{{ index+1 }}</span>
-                  <span class="dib vm f18">{{ item.oneProbeTemperature }}℃</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </el-col>
-      </el-row>
+  <div class="details-card text-white">
+    <div class="title-h tr bd1">
+      <img class="vm" src="~@/assets/detailed-data/00-02.png" alt="" srcset="">
+      <span>状态数据</span>
     </div>
+    <div class="tag-ct tc">
+      <span v-for="(item,index) in equipmenbatterys" :key="item.batterySysNo" class="tag-item" :class="{'active':activeIndex===index}" @click="tabclick(index)">{{ item.batterySysNo }}</span>
+    </div>
+    <div class="pt10 pb24 tc">
+      <div class="dib f24 ml40 mr40">
+        <img class="vm mr10" src="~@/assets/detailed-data/sj-08.png" alt="" srcset="">
+        <span>总电压<span class="ml15">{{ VoltageNum }}V</span>
+        </span></div>
+      <div class="dib f24 ml40 mr40">
+        <img class="vm mr10" src="~@/assets/detailed-data/sj-09.png" alt="" srcset="">
+        <span>电池数<span class="ml15">{{ activeItem.batteryNumber }}V</span>
+        </span></div>
+      <div class="dib f24 ml40 mr40">
+        <img class="vm mr10" src="~@/assets/detailed-data/sj-10.png" alt="" srcset="">
+        <span>温度点数<span class="ml15">{{ activeItem.probeNumber }}V</span>
+        </span></div>
+    </div>
+    <el-row :gutter="24">
+      <el-col v-for="(item, index) in activeItem.batteryVolages" :key="item.id" :span="6">
+        <div class="voltage-content" :data-index="index">
+          <div class="f16 mb24">电压<span class="ml10">{{ item.oneBatteryVolage }}V</span></div>
+          <div class="f16">温度<span class="ml10">{{ activeItem.batteryProbes[index].oneProbeTemperature }}℃</span></div>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -142,6 +130,49 @@ export default {
     height: 51px;
     line-height: 70px;
     background-image: url('~@/assets/detailed-data/bg_temperature@2x.png')
+  }
+}
+.tag-ct{
+  width: 570px;
+  padding: 15px 0;
+  margin: 0 auto;
+  .tag-item{
+    display: inline-block;
+    margin: 5px 15px;
+    width:22px;
+    height:22px;
+    font-size:14px;
+    border:1px solid #fff;
+    color: #fff;
+    border-radius:50%;
+    transition: all .3s;
+    cursor: pointer;
+    &.active{
+      color: #333;
+      background-color: #fff;
+    }
+  }
+}
+.voltage-content{
+  position: relative;
+  background-color: #30343D;
+  padding: 24px;
+  padding-left: 115px;
+  background-position: 24px center;
+  background-repeat: no-repeat;
+  background-image: url('~@/assets/detailed-data/dc-01.png');
+  &::before{
+    position: absolute;
+    content: attr(data-index);
+    top: 24px;
+    left: 24px;
+    width: 53px;
+    line-height: 24px;
+    background-color: #30343D;
+    font-size: 22px;
+    font-weight: bold;
+    color: #89d0fe;
+    text-align: center;
   }
 }
 </style>

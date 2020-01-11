@@ -240,7 +240,7 @@ export default {
 .text-red{
   line-height: 80px;
   padding: 0 24px;
-  background-color: #272e34;
+  background-color: #282C35;
   color: #fff;
 }
 </style>

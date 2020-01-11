@@ -28,9 +28,10 @@
     </div>
     <!-- 图表 -->
     <div class="w-card mt20 p10 pb20">
-      <h5 class="f14 n title">
-        <span class="mr10">设备数据日趋势</span>
-        <el-radio-group v-model="chartType" slot-scope="">
+      <h5 class="f24 n chart-title text-white">
+        <img class="vm" src="~@/assets/tjsj.png" alt="" srcset="">
+        <span class="mr10 vm">设备数据日趋势</span>
+        <el-radio-group v-model="chartType" slot-scope="" class="r" size="small">
           <el-radio-button label="1">充放电数据</el-radio-button>
           <el-radio-button label="2">极值数据</el-radio-button>
         </el-radio-group>
@@ -286,4 +287,21 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.chart-title /deep/{
+  .el-radio-button:first-child .el-radio-button__inner{
+    border-radius: 20px 0 0 20px;
+  }
+  .el-radio-button:last-child .el-radio-button__inner{
+    border-radius: 0 20px 20px 0;
+  }
+  .el-radio-button__inner{
+    background-color: transparent;
+    color: #fff;
+    border-color: #54B1CC;
+  }
+  .el-radio-button__orig-radio:checked+.el-radio-button__inner{
+    background-color: #54B1CC;
+    border-color: #54B1CC;
+  }
+}
 </style>

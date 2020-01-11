@@ -29,12 +29,16 @@
       </el-form>
     </div>
     <!-- tab栏 -->
-    <ul class="tab-ul">
+    <!-- <ul class="tab-ul">
       <li v-for="(item,index) in tabList" :key="index" class="tab-item" :class="{'active':activeTab==item}" @click="activeTabHandle(item)">{{ item.name }}</li>
     </ul>
     <div>
       <component :is="currentTabComponent" :page-data="deviceInfo" />
+    </div> -->
+    <div v-if="deviceInfo.equipmenstatusPo">
+      <component :is="item.components" v-for="item in tabList" :key="item.id" class="mt24" :page-data="deviceInfo" />
     </div>
+
   </div>
 </template>
 

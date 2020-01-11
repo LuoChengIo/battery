@@ -88,13 +88,17 @@ export default {
           axisLabel: { // 刻度样式
             show: true,
             textStyle: {
-              color: '#848E98',
-              fontSize: 8
+              color: '#fff',
+              fontSize: 12,
+              width: '50px'
             }
           },
           boundaryGap: false,
           axisLine: {
-            show: false
+            show: true,
+            lineStyle: {
+              color: '#fff'
+            }
           },
           axisTick: {
             show: false
@@ -108,24 +112,24 @@ export default {
               color: '#57617B'
             }
           },
-          backgroundColor: 'rgba(0,28,55,0.75)',
-          padding: [20, 60, 20, 20]
+          backgroundColor: 'rgba(255,255,255,0.05)',
+          padding: [20, 20, 20, 20]
         },
         legend: [{ //
           icon: 'circle',
           itemWidth: 14,
-          itemHeight: 5,
-          itemGap: 13,
+          itemHeight: 10,
+          itemGap: 12,
           left: 'center',
           bottom: 10,
           textStyle: {
-            fontSize: 10,
-            color: '#848E98'
+            fontSize: 12,
+            color: '#fff'
           }
         }],
         grid: { // 布局
           left: 10,
-          right: 10,
+          right: 50,
           bottom: 50,
           top: 30,
           containLabel: true
@@ -135,13 +139,20 @@ export default {
             show: false
           },
           axisLine: {
-            show: false
+            show: true,
+            lineStyle: {
+              color: '#fff'
+            }
+          },
+          axisLabel: { // 刻度样式
+            show: true,
+            textStyle: {
+              color: '#fff',
+              fontSize: 12
+            }
           },
           splitLine: { // 虚线
-            lineStyle: {
-              type: 'dashed',
-              color: '#DCDCDC'
-            }
+            show: false
           }
         },
         series: seriesData

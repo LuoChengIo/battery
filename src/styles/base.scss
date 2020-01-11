@@ -362,3 +362,24 @@ a[href^="http"]:empty::before {content: attr(href);}
     margin-left: 40px;
   }
 }
+.details-card{
+  background-color: #282C35;
+  padding: 0 24px 24px 24px;
+  .title-h{
+    font-size: 24px;
+    color: #fff;
+    line-height: 60px;
+  }
+  .bd1{
+    border-bottom: 1px solid #fff;
+  }
+  .bt1{
+    border-top: 1px solid #fff;
+  }
+  .bl1{
+    border-left: 1px solid #fff;
+  }
+  .br1{
+    border-right: 1px solid #fff;
+  }
+}

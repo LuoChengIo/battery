@@ -440,6 +440,7 @@ export default {
     }
   }
   .el-image-ct{
+    margin: 0 auto;
     max-width: 150px;
     max-height: 150px;
   }

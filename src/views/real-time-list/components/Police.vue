@@ -1,74 +1,83 @@
 <template>
-  <div class="w-card text-primary f13">
-    <div class="rel">
-      <div class="left-ct bb br">
-        <span>电池温度报警</span>
-      </div>
-      <div class="clearfix right-ct">
-        <div class="float-two">
-          <div v-for="(item,index) in batteryTemperature" :key="index" class="text-secondary item bb br tc">
-            {{ item.text }}
-          </div>
-        </div>
-        <div class="float-two">
-          <div v-for="(item,index) in batteryTemperature" :key="index" class="item bb tc">
-            {{ item.value }}
-          </div>
-        </div>
-      </div>
+  <div class="details-card text-white">
+    <div class="title-h tl">
+      <img class="vm" src="~@/assets/detailed-data/00-04.png" alt="" srcset="">
+      <span>报警数据</span>
     </div>
-    <div class="rel">
-      <div class="left-ct bb br">
-        <span>电池电压报警</span>
-      </div>
-      <div class="clearfix right-ct">
-        <div class="float-two">
-          <div v-for="(item,index) in batteryVoltage" :key="index" class="text-secondary item bb br tc">
-            {{ item.text }}
+    <div class="police-card f14">
+      <div class="border1">
+        <div class="rel">
+          <div class="left-ct bb br">
+            <span>电池温度报警</span>
+          </div>
+          <div class="clearfix right-ct">
+            <div class="float-two">
+              <div v-for="(item,index) in batteryTemperature" :key="index" class="item bb br tc">
+                {{ item.text }}
+              </div>
+            </div>
+            <div class="float-two">
+              <div v-for="(item,index) in batteryTemperature" :key="index" class="item bb tc">
+                {{ item.value }}
+              </div>
+            </div>
           </div>
         </div>
-        <div class="float-two">
-          <div v-for="(item,index) in batteryVoltage" :key="index" class="item bb tc">
-            {{ item.value }}
+        <div class="rel">
+          <div class="left-ct bb br">
+            <span>电池电压报警</span>
+          </div>
+          <div class="clearfix right-ct">
+            <div class="float-two">
+              <div v-for="(item,index) in batteryVoltage" :key="index" class="item bb br tc">
+                {{ item.text }}
+              </div>
+            </div>
+            <div class="float-two">
+              <div v-for="(item,index) in batteryVoltage" :key="index" class="item bb tc">
+                {{ item.value }}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="rel">
-      <div class="left-ct bb br">
-        <span>电池电流报警</span>
-      </div>
-      <div class="clearfix right-ct">
-        <div class="float-two">
-          <div v-for="(item,index) in batteryCurrent" :key="index" class="text-secondary item bb br tc">
-            {{ item.text }}
+        <div class="rel">
+          <div class="left-ct bb br">
+            <span>电池电流报警</span>
+          </div>
+          <div class="clearfix right-ct">
+            <div class="float-two">
+              <div v-for="(item,index) in batteryCurrent" :key="index" class="item bb br tc">
+                {{ item.text }}
+              </div>
+            </div>
+            <div class="float-two">
+              <div v-for="(item,index) in batteryCurrent" :key="index" class="item bb tc">
+                {{ item.value }}
+              </div>
+            </div>
           </div>
         </div>
-        <div class="float-two">
-          <div v-for="(item,index) in batteryCurrent" :key="index" class="item bb tc">
-            {{ item.value }}
+        <div class="rel">
+          <div class="left-ct br">
+            <span>其他报警</span>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="rel">
-      <div class="left-ct br">
-        <span>其他报警</span>
-      </div>
-      <div class="clearfix right-ct">
-        <div class="float-two">
-          <div v-for="(item,index) in elseArr" :key="index" class="text-secondary item br tc" :class="{'bb':index!=elseArr.length-1}">
-            {{ item.text }}
-          </div>
-        </div>
-        <div class="float-two">
-          <div v-for="(item,index) in elseArr" :key="index" class="item tc" :class="{'bb':index!=elseArr.length-1}">
-            {{ item.value }}
+          <div class="clearfix right-ct">
+            <div class="float-two">
+              <div v-for="(item,index) in elseArr" :key="index" class="item br tc" :class="{'bb':index!=elseArr.length-1}">
+                {{ item.text }}
+              </div>
+            </div>
+            <div class="float-two">
+              <div v-for="(item,index) in elseArr" :key="index" class="item tc" :class="{'bb':index!=elseArr.length-1}">
+                {{ item.value }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -138,20 +147,27 @@ export default {
 </script>
 <style lang="scss" scoped>
 .item{
-  line-height: 50px;
+  line-height: 30px;
   padding:0 20px;
 }
+.police-card{
+  padding: 24px;
+  background-color: #2f363c;
+}
+.border1{
+  border: 1px solid #fff;
+}
 .bt{
-  border-top: 1px solid #D4DBEA;
+  border-top: 1px solid #fff;
 }
 .br{
-  border-right: 1px solid #D4DBEA;
+  border-right: 1px solid #fff;
 }
 .bb{
-  border-bottom: 1px solid #D4DBEA;
+  border-bottom: 1px solid #fff;
 }
 .bl{
-  border-left: 1px solid #D4DBEA;
+  border-left: 1px solid #fff;
 }
 .pct75 {
   width: 75%;

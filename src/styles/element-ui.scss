@@ -328,3 +328,8 @@
 .el-table__empty-block{
   background-color:#32393f ;
 }
+.custom-scollbar{
+  .el-scrollbar__wrap{
+    overflow-x: auto;
+  }
+}

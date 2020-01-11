@@ -177,7 +177,30 @@
             </el-form-item>
           </el-form>
           <div class="transfer p10">
-            <el-transfer v-model="formInline.transfer" :titles="['可选角色', '已选角色']" :data="transferData" :right-default-checked="rightDefaultchecked" @right-check-change="transferChange" />
+            <el-row class="hp100">
+              <el-col :span="6" class="ovh hp100">
+                <div>可选角色(可选<span class="text-danger">{{ transferData.length }}</span>项)</div>
+                <el-scrollbar class="custom-scollbar" style="height:calc(100% - 21px)">
+                  <el-checkbox-group v-model="leftChecked">
+                    <el-checkbox v-for="item in transferData" :key="item.key" :label="item.key">{{ item.label }}</el-checkbox>
+                  </el-checkbox-group>
+                </el-scrollbar>
+              </el-col>
+              <el-col :span="8" class="hp100">
+                <el-button type="info" :disabled="!leftChecked.length" style="margin-top: 42px;" size="medium" icon="el-icon-arrow-right" @click="transChange('right')" />
+                <br>
+                <el-button type="info" :disabled="!rightChecked.length" style="margin-left:0;margin-top: 10px;" size="medium" icon="el-icon-arrow-left" @click="transChange('left')" />
+              </el-col>
+              <el-col :span="10" class="ovh hp100">
+                <div>已选角色(已选<span class="text-danger">{{ rightTransferData.length }}</span>项)</div>
+                <el-scrollbar class="custom-scollbar" style="height:calc(100% - 21px)">
+                  <el-checkbox-group v-model="rightChecked" @change="transferChange">
+                    <el-checkbox v-for="item in rightTransferData" :key="item.key" :label="item.key">{{ item.label }}</el-checkbox>
+                  </el-checkbox-group>
+                </el-scrollbar>
+              </el-col>
+            </el-row>
+            <!-- <el-transfer v-model="formInline.transfer" :titles="['可选角色', '已选角色']" :data=" " :right-default-checked="rightDefaultchecked" @right-check-change="transferChange" /> -->
           </div>
         </div>
 
@@ -228,7 +251,10 @@ export default {
         checkAll: false
       },
       treeDialogData: [],
+      leftChecked: [],
+      rightChecked: [],
       transferData: [],
+      rightTransferData: [],
       defaultProps: {
         children: 'twoLevelFunctionList',
         label: 'functionName'
@@ -354,6 +380,10 @@ export default {
         this.$message.warning('请填写正确的子账户数')
         return
       }
+      this.formInline.transfer = []
+      this.rightTransferData.forEach(element => {
+        this.formInline.transfer.push(element.key)
+      })
       if (!this.formInline.transfer.length) {
         this.$message.warning('请选择用户角色')
         return
@@ -380,8 +410,10 @@ export default {
         transfer: []
       })
       this.transferData = []
+      this.rightTransferData = []
       this.treeDialogData = []
-      this.rightDefaultchecked = []
+      this.leftChecked = []
+      this.rightChecked = []
       if (type === 6) {
         // 添加用户
         this.dialogTitle = '添加用户'
@@ -404,7 +436,8 @@ export default {
               transfer.push(element.roleId)
             })
             this.formInline.transfer = transfer
-            this.rightDefaultchecked = [...transfer]
+            this.leftChecked = [...transfer]
+            this.transChange('right')
             this.transferChange(transfer)
           })
         }).catch(() => {
@@ -466,6 +499,29 @@ export default {
         })
       }
     },
+    transChange(type) {
+      if (type === 'right') {
+        this.transferData.forEach((element, index) => {
+          this.leftChecked.forEach(ele => {
+            if (element.key === ele) {
+              this.rightTransferData.push(element)
+              this.transferData.splice(index, 1)
+            }
+          })
+        })
+        this.leftChecked = []
+      } else {
+        this.rightTransferData.forEach((element, index) => {
+          this.rightChecked.forEach(ele => {
+            if (element.key === ele) {
+              this.transferData.push(element)
+              this.rightTransferData.splice(index, 1)
+            }
+          })
+        })
+        this.rightChecked = []
+      }
+    },
     handleSizeChange(val) { // 切换每页显示数
       this.searchFrom.pageNo = 1
       this.searchFrom.pageRows = val
@@ -502,7 +558,25 @@ export default {
       width: 155px;
     }
   }
-  .transfer{
+  .transfer /deep/{
+    height: 180px;
     border-top: 1px solid #333;
+    .el-transfer-panel{
+      border: none;
+    }
+    .el-checkbox__inner{
+      width: 12px;
+      height: 12px;
+    }
+    .el-checkbox__inner::after{
+      left: 3px;
+      top: 0;
+    }
+    .el-checkbox__label{
+      font-size: 12px;
+    }
+    .el-checkbox{
+      display:block;
+    }
   }
 </style>
