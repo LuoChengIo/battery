@@ -130,7 +130,7 @@ export default {
           //   },
           axisPointer: {
             lineStyle: {
-              color: '#57617B'
+              color: '#fff'
             }
           },
           backgroundColor: 'rgba(0,28,55,0.75)',
@@ -138,13 +138,14 @@ export default {
         },
         legend: {
           left: 'center',
+          icon: 'circle',
+          itemWidth: 14,
+          itemHeight: 10,
+          itemGap: 12,
           bottom: 10,
-          itemGap: 10,
-          itemWidth: 8,
-          itemHeight: 8,
           textStyle: {
-            fontSize: 10,
-            color: '#848E98'
+            fontSize: 12,
+            color: '#fff'
           }
         },
         grid: { // 布局
@@ -159,21 +160,24 @@ export default {
             show: false
           },
           axisLine: {
-            show: false
+            show: true,
+            lineStyle: {
+              color: '#fff'
+            }
           },
           splitLine: { // 虚线
             lineStyle: {
               type: 'dashed',
-              color: '#DCDCDC'
+              color: '#fff'
             }
           }
         },
         series: [{
           name: '一级警告', itemStyle: {
             normal: {
-              color: '#FA2121',
+              color: '#E62327',
               lineStyle: {
-                color: '#FA2121',
+                color: '#E62327',
                 width: 1
               }
             }
@@ -188,9 +192,9 @@ export default {
         {
           name: '二级警告', itemStyle: {
             normal: {
-              color: '#FF832F',
+              color: '##FE761E',
               lineStyle: {
-                color: '#FF832F',
+                color: 'FE761E',
                 width: 1
               }
             }
@@ -204,9 +208,9 @@ export default {
         }, {
           name: '三级警告', itemStyle: {
             normal: {
-              color: '#FFC12F',
+              color: '#FFF11E',
               lineStyle: {
-                color: '#FFC12F',
+                color: '#FFF11E',
                 width: 1
               }
             }
@@ -221,9 +225,9 @@ export default {
         {
           name: '正常', itemStyle: {
             normal: {
-              color: '#3FAFFF',
+              color: '#6380FE',
               lineStyle: {
-                color: '#3FAFFF',
+                color: '#6380FE',
                 width: 1
               }
             }

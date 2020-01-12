@@ -15,12 +15,12 @@
             同比
           </el-col> -->
         </el-row>
-        <div class="model">
+        <div class="model w66">
           <img src="@/assets/icon_warning01@2x.png" class="img-icon">
           <h5 class="f24 n title">警告数量</h5>
           <line-chart :chart-data="lineChartData" />
         </div>
-        <div class="model">
+        <div class="model  w33">
           <el-row v-for="(item,index) in warningData" :key="index" class="mt20 mb20 f13">
             <el-col :span="12" class="text-primary">
               <router-link :to="{ path: '/real/time-list', query: { failure: item.value }}">
@@ -212,8 +212,13 @@ export default {
   .img-icon{
     position: absolute;
   }
+  .w66{
+    width: 66%;
+  }
+  .w33{
+   width: 33%
+  }
   .model{
-    width:50%;
     float:left;
     background-color:#282C35;
   }
