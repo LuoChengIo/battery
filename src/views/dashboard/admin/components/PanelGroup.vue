@@ -91,6 +91,7 @@ export default {
     width: 22.32%;
     height: 140px;
     margin: 22px;
+    border-radius:4px;
   }
   .bg-item{
     background-color: #353841;
