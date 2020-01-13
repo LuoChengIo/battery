@@ -100,7 +100,7 @@ export default {
       programList(this.searchFrom)
         .then(res => {
           this.tableData = res.data.list
-          this.searchFrom.currentSize = res.data.totalPages
+          this.searchFrom.currentSize = res.data.list.length
           this.searchFrom.total = res.data.total
         })
         .catch(err => {
