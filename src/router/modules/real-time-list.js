@@ -10,7 +10,7 @@ const realTimeRouter = {
   alwaysShow: true,
   meta: {
     title: '实时列表',
-    icon: 'icon_time_list'
+    icon: 'jk'
   },
   children: [
     {

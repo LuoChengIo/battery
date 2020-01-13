@@ -117,6 +117,7 @@ export default {
         this.$message.warning('请输入设备id~')
         return
       }
+      this.deviceInfo = {}
       this.queryLoading = true
       equipmentid(this.searchFrom)
         .then(res => {

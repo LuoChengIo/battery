@@ -1,17 +1,17 @@
 import request from '@/utils/request'
 // 实时列表---列表查询
-export function dataList(data) {
+export function dataList(params) {
   return request({
     url: '/data/list',
-    method: 'post',
-    data
+    method: 'get',
+    params
   })
 }
 // 实时列表---详情查询
-export function equipmentid(data) {
+export function equipmentid(params) {
   return request({
     url: '/data/equipmentid',
-    method: 'post',
-    data
+    method: 'get',
+    params
   })
 }

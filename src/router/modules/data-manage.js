@@ -9,7 +9,7 @@ const dataRouter = {
   name: 'dataManage',
   meta: {
     title: '数据管理',
-    icon: 'icon_data_manage'
+    icon: 'history'
   },
   children: [
     {

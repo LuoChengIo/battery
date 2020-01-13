@@ -9,7 +9,7 @@ const userRouter = {
   name: 'userManage',
   meta: {
     title: '系统管理',
-    icon: 'icon_systerm_manage'
+    icon: 'systern'
   },
   children: [
     {

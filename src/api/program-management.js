@@ -1,11 +1,11 @@
 import request from '@/utils/request'
 import axios from 'axios'
 // 程序管理列表查询
-export function programList(data) {
+export function programList(params) {
   return request({
     url: '/equipment/program/list',
-    method: 'post',
-    data
+    method: 'get',
+    params
   })
 }
 // 程序管理是上传文件

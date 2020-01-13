@@ -1,18 +1,18 @@
 import request from '@/utils/request'
 // 统计分析-数据查询
-export function inquireList(data) {
+export function inquireList(params) {
   return request({
     url: '/data/month/list',
-    method: 'post',
-    data
+    method: 'get',
+    params
   })
 }
 // 统计分析-数据详情
-export function listDetails(data) {
+export function listDetails(params) {
   return request({
     url: '/data/month/equipmentid',
-    method: 'post',
-    data
+    method: 'get',
+    params
   })
 }
 // 统计分析-数据导出
@@ -25,10 +25,10 @@ export function exportData(data) {
 }
 
 // 统计分析-当日数据 统计
-export function dayList(data) {
+export function dayList(params) {
   return request({
     url: '/equipment/statics/list',
-    method: 'post',
-    data
+    method: 'get',
+    params
   })
 }

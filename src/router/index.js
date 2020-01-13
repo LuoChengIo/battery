@@ -74,13 +74,13 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/dashboard',
     hidden: true,
-    meta: { title: '首页', icon: 'icon_homepage_default' },
+    meta: { title: '首页', icon: 'home' },
     children: [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: '首页', icon: 'icon_homepage_default', affix: true }
+        meta: { title: '首页', icon: 'home', affix: true }
       }
     ]
   }
@@ -95,13 +95,13 @@ export const asyncRoutes = [
     path: '/index',
     component: Layout,
     redirect: '/dashboard',
-    meta: { title: '首页', icon: 'icon_homepage_default' },
+    meta: { title: '首页', icon: 'home' },
     children: [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: '首页', icon: 'icon_homepage_default', affix: true }
+        meta: { title: '首页', icon: 'home', affix: true }
       }
     ]
   },
@@ -117,7 +117,7 @@ export const asyncRoutes = [
     name: 'program-management',
     meta: {
       title: '程序管理',
-      icon: 'procedure_manage',
+      icon: 'systern',
       roles: ['admin', 'editor'] // you can set roles in root nav
     },
     children: [
