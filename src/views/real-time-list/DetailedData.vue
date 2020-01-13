@@ -35,7 +35,7 @@
     <div>
       <component :is="currentTabComponent" :page-data="deviceInfo" />
     </div> -->
-    <div v-if="deviceInfo.equipmenstatusPo">
+    <div v-if="deviceInfo.equipmentStatusInfo">
       <component :is="item.components" v-for="item in tabList" :key="item.id" class="mt24" :page-data="deviceInfo" />
     </div>
 
@@ -122,7 +122,7 @@ export default {
       equipmentid(this.searchFrom)
         .then(res => {
           this.deviceInfo = res.data
-          this.searchFrom = Object.assign(this.searchFrom, res.data.equipmentPo)
+          this.searchFrom = Object.assign(this.searchFrom, res.data.equipmentInfo)
           this.activeTab = this.tabList[0]
         })
         .catch(err => {
