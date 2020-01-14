@@ -119,9 +119,7 @@ export default {
                 },
                 labelLine: {
                   show: false
-                },
-                borderWidth: 4,
-                borderColor: '#282C35'
+                }
               }
             },
             data: data,

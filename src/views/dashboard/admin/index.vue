@@ -1,53 +1,46 @@
 <template>
   <div class="dashboard-editor-container">
     <panel-group :numobj="equipmentChargeSum" />
-    <div class="mt10">
-      <div class="w-card left-ct p10">
-        <!-- <h5 class="f14 n title">警告数量</h5> -->
-        <el-row :gutter="20" class="tc blue-title mt20">
-          <!-- <el-col :span="12">
-            故障等级
-          </el-col>
-          <el-col :span="12">
-            数量
-          </el-col> -->
-          <!-- <el-col :span="8">
-            同比
-          </el-col> -->
-        </el-row>
+    <div class="mt24">
+      <div class="w-card left-ct p24">
         <div class="model w66">
           <img src="@/assets/icon_warning01@2x.png" class="img-icon">
           <h5 class="f24 n title">警告数量</h5>
           <line-chart :chart-data="lineChartData" />
         </div>
         <div class="model  w33">
-          <el-row v-for="(item,index) in warningData" :key="index" class="mt20 mb20 f13">
-            <el-col :span="12" class="text-primary">
+          <!-- <el-row v-for="(item,index) in warningData" :key="index" class="mt20 mb20 f13">
+            <el-col :span="8" class="text-primary">
               <router-link :to="{ path: '/real/time-list', query: { failure: item.value }}">
                 <img class="warn-icon" :src="item.imgsrc" alt="" srcset="">
                 {{ item.title }}
               </router-link>
             </el-col>
-            <el-col :span="12" :class="item.myclass" class="tc">
+            <el-col :span="8" :class="item.myclass" class="tc">
               {{ item.quantity }}
             </el-col>
-          <!-- <el-col :span="8" :class="item.myclass" class="tc">
+          <el-col :span="8" :class="item.myclass" class="tc">
             {{ item.yearonyear }}
-          </el-col> -->
-          </el-row>
+          </el-col>
+          </el-row> -->
+          <div v-for="(item,index) in warningData" :key="index" class="warning-card">
+            <img class="warn-icon vm mr15" :src="item.imgsrc" alt="" srcset="">
+            <span class="dib vm mr15" style="width:56px;">{{ item.title }}</span>
+            <span :class="item.myclass">{{ item.quantity }}</span>
+          </div>
         </div>
       </div>
-      <div class="right-ct">
+      <div class="mt24">
         <!-- <div class="w-card p10">
           <h5 class="f14 n title">设备数量</h5>
           <bar-chart :chart-data="barChartData" />
         </div> -->
-        <el-row class="mt10" :gutter="10">
+        <el-row :gutter="24">
           <el-col :span="12">
             <div class="w-card p10">
               <img src="@/assets/data.png" class="img-icon">
               <h5 class="f24 n title">设备在线状态</h5>
-              <pie-chart :chart-data="pieChartData1" />
+              <pie-chart2 :chart-data="pieChartData1" />
             </div>
           </el-col>
           <el-col :span="12">
@@ -69,6 +62,7 @@ import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
 // import BarChart from './components/BarChart'
 import PieChart from './components/PieChart'
+import PieChart2 from './components/PieChart2'
 const warningData = [{
   imgsrc: require('@/assets/icon_warning01@2x.png'),
   title: '一级警告',
@@ -76,7 +70,7 @@ const warningData = [{
   value: '1',
   quantity: '0',
   yearonyear: '10.85↑',
-  myclass: 'text-danger'
+  myclass: 'warn-text1'
 }, {
   imgsrc: require('@/assets/icon_warning02@2x.png'),
   title: '二级警告',
@@ -84,7 +78,7 @@ const warningData = [{
   value: '2',
   quantity: '0',
   yearonyear: '10.85↑',
-  myclass: 'text-danger'
+  myclass: 'warn-text2'
 }, {
   imgsrc: require('@/assets/icon_warning03@2x.png'),
   title: '三级警告',
@@ -92,7 +86,7 @@ const warningData = [{
   value: '3',
   quantity: '0',
   yearonyear: '10.85↓',
-  myclass: 'text-danger'
+  myclass: 'warn-text3'
 }, {
   imgsrc: require('@/assets/icon_warning04@2x.png'),
   title: '正常',
@@ -100,14 +94,14 @@ const warningData = [{
   value: '0',
   quantity: '0',
   yearonyear: '10.85↑',
-  myclass: 'text-success'
+  myclass: 'warn-text4'
 }]
 export default {
   name: 'DashboardAdmin',
   components: {
     PanelGroup,
     LineChart,
-    // BarChart,
+    PieChart2,
     PieChart
   },
   data() {
@@ -145,8 +139,8 @@ export default {
         this.equipmentChargeSum = equipmentChargeSum
         // 在线图标
         this.pieChartData1 = [
-          { value: equipmentChargeSum.onLine || 0, legendname: '在线', name: '在线', itemStyle: { color: '#3147EB' }},
-          { value: equipmentChargeSum.offLine || 0, legendname: '离线', name: '离线', itemStyle: { color: '#E7C86B' }}
+          { value: equipmentChargeSum.onLine || 14, legendname: '在线', name: '在线', itemStyle: { color: '#3147EB' }},
+          { value: equipmentChargeSum.offLine || 12, legendname: '离线', name: '离线', itemStyle: { color: '#E7C86B' }}
         ]
         this.pieChartData2 = [
           { value: equipmentChargeSum.chargeState || 0, legendname: '充电', name: '充电', itemStyle: { color: '#6060F6' }},
@@ -194,14 +188,13 @@ export default {
   }
   .warn-icon{
     display: inline-block;
-    width: 14px;
-    height: 14px;
+    width: 32px;
+    height: 32px;
     margin-right: 10px;
   }
   .left-ct{
     // float: left;
     width: 100%;
-    min-height: 450px;
     .blue-title{
       font-size:13px;
       line-height: 36px;
@@ -222,5 +215,29 @@ export default {
     float:left;
     background-color:#282C35;
   }
+}
+.warning-card{
+  height:70px;
+  background:rgba(51,55,64,1);
+  border-radius:4px;
+  padding:10px 20px;
+  line-height: 50px;
+  font-size: 14px;
+  color: #fff;
+  &+.warning-card{
+    margin-top: 24px;
+  }
+}
+.warn-text1{
+  color:#E62327;
+}
+.warn-text2{
+  color:#FE761E;
+}
+.warn-text3{
+  color:#FFF11E;
+}
+.warn-text4{
+  color:#6380FE;
 }
 </style>

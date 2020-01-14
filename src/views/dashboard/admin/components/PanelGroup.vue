@@ -1,58 +1,49 @@
 <template>
-  <el-row :gutter="0" class="panel-group">
-    <el-col :span="6" class="card-panel-col">
-      <div class="card-panel bg-item" @click="handleSetLineChartData('newVisitis')">
-        <div class="card-panel-description">
-          <count-to :start-val="0" :end-val="numobj.equipmentCounts" :duration="2600" class="card-panel-num" />
-          <div class="card-panel-text">
-            总设备总数（个）
+  <div class="p24 cos">
+    <el-row :gutter="20" class="panel-group">
+      <el-col :span="6" class="card-panel-col">
+        <div class="card-panel bg-item bg-item1" @click="handleSetLineChartData('newVisitis')">
+          <div class="card-panel-description">
+            <count-to :start-val="0" :end-val="numobj.equipmentCounts" :duration="2600" class="card-panel-num" />
+            <div class="card-panel-text">
+              总设备总数（个）
+            </div>
           </div>
         </div>
-        <div class="card-panel-icon-wrapper icon-people">
-          <img src="../../../../assets/1-01.png">
-        </div>
-      </div>
-    </el-col>
-    <el-col :span="6" class="card-panel-col">
-      <div class="card-panel bg-item" @click="handleSetLineChartData('messages')">
-        <div class="card-panel-description">
-          <count-to :start-val="0" :end-val="numobj.disChargeSum" :duration="3000" class="card-panel-num" />
-          <div class="card-panel-text">
-            总放电功率(W)
+      </el-col>
+      <el-col :span="6" class="card-panel-col">
+        <div class="card-panel bg-item bg-item2" @click="handleSetLineChartData('messages')">
+          <div class="card-panel-description">
+            <count-to :start-val="0" :end-val="numobj.disChargeSum" :duration="3000" class="card-panel-num" />
+            <div class="card-panel-text">
+              总放电功率(W)
+            </div>
           </div>
         </div>
-        <div class="card-panel-icon-wrapper icon-people">
-          <img src="../../../../assets/1-02.png">
-        </div>
-      </div>
-    </el-col>
-    <el-col :span="6" class="card-panel-col">
-      <div class="card-panel bg-item" @click="handleSetLineChartData('purchases')">
-        <div class="card-panel-description">
-          <count-to :start-val="0" :end-val="numobj.chargeSum" :duration="3200" class="card-panel-num" />
-          <div class="card-panel-text">
-            总充电功率(W)
+      </el-col>
+      <el-col :span="6" class="card-panel-col">
+        <div class="card-panel bg-item bg-item3" @click="handleSetLineChartData('purchases')">
+          <div class="card-panel-description">
+            <count-to :start-val="0" :end-val="numobj.chargeSum" :duration="3200" class="card-panel-num" />
+            <div class="card-panel-text">
+              总充电功率(W)
+            </div>
           </div>
         </div>
-        <div class="card-panel-icon-wrapper icon-people">
-          <img src="../../../../assets/1-03.png">
-        </div>
-      </div>
-    </el-col>
-    <el-col :span="6" class="card-panel-col">
-      <div class="card-panel bg-item" @click="handleSetLineChartData('shoppings')">
-        <div class="card-panel-description">
-          <count-to :start-val="0" :end-val="numobj.carbonReduction" :duration="3600" class="card-panel-num" />
-          <div class="card-panel-text">
-            减少二氧化碳排放量(L)
+      </el-col>
+      <el-col :span="6" class="card-panel-col">
+        <div class="card-panel bg-item bg-item4" @click="handleSetLineChartData('shoppings')">
+          <div class="card-panel-description">
+            <count-to :start-val="0" :end-val="numobj.carbonReduction" :duration="3600" class="card-panel-num" />
+            <div class="card-panel-text">
+              减少二氧化碳排放量(L)
+            </div>
           </div>
         </div>
-        <div class="card-panel-icon-wrapper icon-people">
-          <img src="../../../../assets/1-04.png">
-        </div>
-      </div>
-    </el-col>
-  </el-row>
+      </el-col>
+    </el-row>
+  </div>
+
 </template>
 
 <script>
@@ -84,33 +75,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.panel-group {
+.cos{
   background-color: #282c35;
-   height: 190px;
-  .card-panel-col {
-    width: 22.32%;
-    height: 140px;
-    margin: 22px;
-    border-radius:4px;
-  }
+}
+.panel-group {
   .bg-item{
     background-color: #353841;
+    background-position: right 20px center;
+    background-repeat: no-repeat;
   }
   .bg-item1{
-    background-image: url('../../../../assets/program-management/bg_home_sum01@2x.png');
-    background-size: 100% 100%;
+    background-image: url('~@/assets/1-01.png');
   }
   .bg-item2{
-    background-image: url('../../../../assets/program-management/bg_home_sum02@2x.png');
-    background-size: 100% 100%;
+    background-image: url('~@/assets/1-02.png');
   }
   .bg-item3{
-    background-image: url('../../../../assets/program-management/bg_home_sum03@2x.png');
-    background-size: 100% 100%;
+    background-image: url('~@/assets/1-03.png');
   }
   .bg-item4{
-    background-image: url('../../../../assets/program-management/bg_home_sum04@2x.png');
-    background-size: 100% 100%;
+    background-image: url('~@/assets/1-04.png');
   }
   .card-panel {
     height: 140px;;
@@ -119,6 +103,8 @@ export default {
     position: relative;
     overflow: hidden;
     color: #fff;
+    border-radius:4px;
+    border:2px solid rgba(255,255,255,.2);
     // background: #fff;
     // box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
     // border-color: rgba(0, 0, 0, .05);
@@ -177,15 +163,13 @@ export default {
     .card-panel-description {
       float: left;
       font-weight: bold;
-      margin: 19px;
-      margin-left: 25px;
+      margin: 10px 0 0 25px;
       .card-panel-text {
         line-height: 20px;
-        color: #fff;
-        font-size: 18px;
-        margin: 25px 0px;
-        color: rgb(158,204,253);
-
+        font-size: 20px;
+        margin-top: 30px ;
+        color: #89D0FC;
+        font-weight: normal;
       }
 
       .card-panel-num {
