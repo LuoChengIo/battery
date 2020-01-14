@@ -98,43 +98,43 @@ export default {
   computed: {
     batteryTemperature() {
       const batteryTemperature = [
-        { text: '电池充电高温报警', value: this.equipmenwarnPo.batteryChargeHigh || 0 },
-        { text: '电池充电低温报警', value: this.equipmenwarnPo.batteryChargeLow || 0 },
-        { text: '电池放电高温报警', value: this.equipmenwarnPo.batteryDischargeHigh || 0 },
-        { text: '电池放电低温报警', value: this.equipmenwarnPo.batteryDischargeLow || 0 },
-        { text: '温差过大报警', value: this.equipmenwarnPo.temperatureDifference || 0 }
+        { text: '电池充电高温报警', value: this.equipmentWarnInfo.batteryChargeHigh || 0 },
+        { text: '电池充电低温报警', value: this.equipmentWarnInfo.batteryChargeLow || 0 },
+        { text: '电池放电高温报警', value: this.equipmentWarnInfo.batteryDischargeHigh || 0 },
+        { text: '电池放电低温报警', value: this.equipmentWarnInfo.batteryDischargeLow || 0 },
+        { text: '温差过大报警', value: this.equipmentWarnInfo.temperatureDifference || 0 }
       ]
       return batteryTemperature
     },
     batteryVoltage() {
       const batteryTemperature = [
-        { text: '总压过压报警', value: this.equipmenwarnPo.voltageHigh || 0 },
-        { text: '总压欠压报警', value: this.equipmenwarnPo.voltageLow || 0 },
-        { text: '单体电池过压报警', value: this.equipmenwarnPo.oneBatteryVoltageOut || 0 },
-        { text: '单体电池欠压报警', value: this.equipmenwarnPo.oneBatteryVoltageLow || 0 },
-        { text: '压差过大报警', value: this.equipmenwarnPo.voltageDifference || 0 }
+        { text: '总压过压报警', value: this.equipmentWarnInfo.voltageHigh || 0 },
+        { text: '总压欠压报警', value: this.equipmentWarnInfo.voltageLow || 0 },
+        { text: '单体电池过压报警', value: this.equipmentWarnInfo.oneBatteryVoltageOut || 0 },
+        { text: '单体电池欠压报警', value: this.equipmentWarnInfo.oneBatteryVoltageLow || 0 },
+        { text: '压差过大报警', value: this.equipmentWarnInfo.voltageDifference || 0 }
       ]
       return batteryTemperature
     },
     batteryCurrent() {
       const batteryTemperature = [
-        { text: '放电过流报警', value: this.equipmenwarnPo.batteryDischargeOut || 0 },
-        { text: '充电过流报警', value: this.equipmenwarnPo.batteryChargeOut || 0 }
+        { text: '放电过流报警', value: this.equipmentWarnInfo.batteryDischargeOut || 0 },
+        { text: '充电过流报警', value: this.equipmentWarnInfo.batteryChargeOut || 0 }
       ]
       return batteryTemperature
     },
     elseArr() {
       const batteryTemperature = [
-        { text: '绝缘报警', value: this.equipmenwarnPo.resistance || 0 },
-        { text: 'SOC低报警', value: this.equipmenwarnPo.socLow || 0 },
-        { text: 'SOC过高报警', value: this.equipmenwarnPo.socHigh || 0 },
-        { text: 'DC-DC状态报警', value: this.equipmenwarnPo.dcStatus || 0 },
-        { text: '高压互琐状态报警', value: this.equipmenwarnPo.highLock || 0 }
+        { text: '绝缘报警', value: this.equipmentWarnInfo.resistance || 0 },
+        { text: 'SOC低报警', value: this.equipmentWarnInfo.socLow || 0 },
+        { text: 'SOC过高报警', value: this.equipmentWarnInfo.socHigh || 0 },
+        { text: 'DC-DC状态报警', value: this.equipmentWarnInfo.dcStatus || 0 },
+        { text: '高压互琐状态报警', value: this.equipmentWarnInfo.highLock || 0 }
       ]
       return batteryTemperature
     },
-    equipmenwarnPo() {
-      return this.pageData.equipmenwarnPo
+    equipmentWarnInfo() {
+      return this.pageData.equipmentWarnInfo
     }
   },
   watch: {},

@@ -2,6 +2,7 @@
   <el-breadcrumb class="app-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="(item,index) in levelList" :key="item.path">
+        <img v-if="!index" class="breadcrumb-img" :src="item.meta.imgsrc">
         <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
         <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
       </el-breadcrumb-item>
@@ -39,7 +40,15 @@ export default {
       //   matched = [{ path: '/dashboard', meta: { title: '首页' }}].concat(matched)
       // }
 
-      this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+      const levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
+      levelList.forEach((element) => {
+        try {
+          element.meta.imgsrc = require(`@/assets/menu/${element.meta.icon}.png`)
+        } catch (err) {
+          console.log(err)
+        }
+      })
+      this.levelList = levelList
     },
     isDashboard(route) {
       const name = route && route.name
@@ -76,5 +85,11 @@ export default {
     color: #fff;
     cursor: text;
   }
+}
+.breadcrumb-img{
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: text-bottom;
 }
 </style>

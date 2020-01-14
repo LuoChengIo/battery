@@ -2,11 +2,11 @@
 /* eslint-disable indent */
 import request from '@/utils/request'
 // 设备管理-数据查询
-export function equipmentList(data) {
+export function equipmentList(params) {
   return request({
     url: '/equipment/list',
-    method: 'post',
-    data
+    method: 'get',
+    params
   })
 }
 // 设备管理-数据保存
@@ -28,20 +28,20 @@ export function equipmentDel(data) {
   }
 
   //  设备管理-详情列表
-export function equipmentView(data) {
+export function equipmentView(params) {
     return request({
       url: '/equipment/view',
-      method: 'post',
-      data
+      method: 'get',
+      params
     })
   }
 
   // 设备管理-数据统计
-  export function equipmentStatics(data) {
+  export function equipmentStatics(params) {
     return request({
       url: '/equipment/statics',
-      method: 'post',
-      data
+      method: 'get',
+      params
     })
   }
 

@@ -5,7 +5,7 @@
       <span>状态数据</span>
     </div>
     <div class="tag-ct tc">
-      <span v-for="(item,index) in equipmenbatterys" :key="item.batterySysNo" class="tag-item" :class="{'active':activeIndex===index}" @click="tabclick(index)">{{ item.batterySysNo }}</span>
+      <span v-for="(item,index) in batteryComplexList" :key="item.batterySysNo" class="tag-item" :class="{'active':activeIndex===index}" @click="tabclick(index)">{{ item.batterySysNo }}</span>
     </div>
     <div class="pt10 pb24 tc">
       <div class="dib f24 ml40 mr40">
@@ -22,7 +22,7 @@
         </span></div>
     </div>
     <el-row :gutter="24">
-      <el-col v-for="(item, index) in activeItem.batteryVolages" :key="item.id" :span="6">
+      <el-col v-for="(item, index) in activeItem.batteryVoltages" :key="item.id" :span="6">
         <div class="voltage-content" :data-index="index">
           <div class="f16 mb24">电压<span class="ml10">{{ item.oneBatteryVolage }}V</span></div>
           <div class="f16">温度<span class="ml10">{{ activeItem.batteryProbes[index].oneProbeTemperature }}℃</span></div>
@@ -52,26 +52,26 @@ export default {
   computed: {
     VoltageNum() {
       let num = 0
-      this.activeItem.batteryVolages.forEach(element => {
+      this.activeItem.batteryVoltages.forEach(element => {
         num += element.oneBatteryVolage
         console.log(num)
       })
       console.log(num)
       return Math.floor(num * 100) / 100
     },
-    equipmenbatterys() {
-      return this.pageData.equipmenbatterys
+    batteryComplexList() {
+      return this.pageData.batteryComplexList
     }
   },
   watch: {},
   mounted() {},
   created() {
-    this.activeItem = this.equipmenbatterys[0]
+    this.activeItem = this.batteryComplexList[0]
   },
   methods: {
     tabclick(index) {
       this.activeIndex = index
-      this.activeItem = this.equipmenbatterys[index]
+      this.activeItem = this.batteryComplexList[index]
     }
   }
 }

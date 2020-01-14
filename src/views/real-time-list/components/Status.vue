@@ -23,15 +23,15 @@
       <div class="malfunction">
         <div class="malfunction-item item1">
           <p class="f14 text-white tl">设备故障等级</p>
-          <div class="f18 mt10">{{ equipmenstatusPo.failureName }}</div>
+          <div class="f18 mt10">{{ equipmentStatusInfo.failureName }}</div>
         </div>
         <div class="malfunction-item item2">
           <p class="f14 text-white tl">设备状态</p>
-          <div class="f18 mt10">{{ equipmenstatusPo.statusName }}</div>
+          <div class="f18 mt10">{{ equipmentStatusInfo.statusName }}</div>
         </div>
         <div class="malfunction-item item3">
           <p class="f14 text-white tl">状态功能码</p>
-          <div class="f18 mt10">{{ equipmenstatusPo.statusCode }}</div>
+          <div class="f18 mt10">{{ equipmentStatusInfo.statusCode }}</div>
         </div>
       </div>
     </div>
@@ -41,9 +41,9 @@
         <img class="vm" src="~@/assets/detailed-data/03.png" alt="" srcset="">
         <span class="vm">数据信息</span>
         <div class="r text-white">
-          <div class="dib f12 mr20">电池簇编号:<span class="ml5">{{ equipmenstatusPo.batchNo }}</span></div>
-          <div class="dib f12 mr20">电池箱数量:<span class="ml5">{{ equipmenstatusPo.batteryNumber }}</span></div>
-          <div class="dib f12 mr20">信息采集时间:<span class="ml5">{{ equipmenstatusPo.collectionTime }}</span></div>
+          <div class="dib f12 mr20">电池簇编号:<span class="ml5">{{ equipmentStatusInfo.batchNo }}</span></div>
+          <div class="dib f12 mr20">电池箱数量:<span class="ml5">{{ equipmentStatusInfo.batteryNumber }}</span></div>
+          <div class="dib f12 mr20">信息采集时间:<span class="ml5">{{ equipmentStatusInfo.collectionTime }}</span></div>
         </div>
       </h5>
       <div class="pl24 pr24 pt15 text-white">
@@ -51,25 +51,25 @@
           <el-col :span="6">
             <div class="gray-card g1">
               <p class="f14  mb10">系统电压</p>
-              <div class="f24 ">{{ equipmenstatusPo.sysVoltage }} V</div>
+              <div class="f24 ">{{ equipmentStatusInfo.sysVoltage }} V</div>
             </div>
           </el-col>
           <el-col :span="6">
             <div class="gray-card g2">
               <p class="f14  mb10">系统电流</p>
-              <div class="f24 ">{{ equipmenstatusPo.sysProbe }}  A</div>
+              <div class="f24 ">{{ equipmentStatusInfo.sysProbe }}  A</div>
             </div>
           </el-col>
           <el-col :span="6">
             <div class="gray-card g3">
               <p class="f14  mb10">系统绝缘电阻</p>
-              <div class="f24 ">{{ equipmenstatusPo.sysResistance }}  κΩ</div>
+              <div class="f24 ">{{ equipmentStatusInfo.sysResistance }}  κΩ</div>
             </div>
           </el-col>
           <el-col :span="6">
             <div class="gray-card g3">
               <p class="f14  mb10 ell">电池包正极对地绝缘电阻</p>
-              <div class="f24 ">{{ equipmenstatusPo.batteryPositiveResistance }}  κΩ</div>
+              <div class="f24 ">{{ equipmentStatusInfo.batteryPositiveResistance }}  κΩ</div>
             </div>
           </el-col>
         </el-row>
@@ -77,25 +77,25 @@
           <el-col :span="6">
             <div class="gray-card g3">
               <p class="f14  mb10 ell">电池包负极对地绝缘电阻</p>
-              <div class="f24 ">{{ equipmenstatusPo.batteryNegativeResistance }}  κΩ</div>
+              <div class="f24 ">{{ equipmentStatusInfo.batteryNegativeResistance }}  κΩ</div>
             </div>
           </el-col>
           <el-col :span="6">
             <div class="gray-card g4">
               <p class="f14  mb10">SOC</p>
-              <div class="f24 ">{{ equipmenstatusPo.soc }} %</div>
+              <div class="f24 ">{{ equipmentStatusInfo.soc }} %</div>
             </div>
           </el-col>
           <el-col :span="6">
             <div class="gray-card g5">
               <p class="f14  mb10">总充电次数</p>
-              <div class="f24 ">{{ equipmenstatusPo.chargeNumber }} </div>
+              <div class="f24 ">{{ equipmentStatusInfo.chargeNumber }} </div>
             </div>
           </el-col>
           <el-col :span="6">
             <div class="gray-card g6">
               <p class="f14  mb10">总充电功率</p>
-              <div class="f24 ">{{ equipmenstatusPo.charge }}  κΩ</div>
+              <div class="f24 ">{{ equipmentStatusInfo.charge }}  κΩ</div>
             </div>
           </el-col>
         </el-row>
@@ -103,7 +103,7 @@
           <el-col :span="6">
             <div class="gray-card g7">
               <p class="f14  mb10">总放电功率</p>
-              <div class="f24 ">{{ equipmenstatusPo.discharge }}  KW</div>
+              <div class="f24 ">{{ equipmentStatusInfo.discharge }}  KW</div>
             </div>
           </el-col>
         </el-row>
@@ -141,16 +141,16 @@ export default {
         { id: 'relayStatus2', text: '充电正继电器状态', active: false }
       ]
       statusData.forEach(item => {
-        if (this.equipmenstatusPo[item.id] !== '0') {
+        if (this.equipmentStatusInfo[item.id] !== '0') {
           item.active = true
         }
       })
       return statusData
     },
-    equipmenstatusPo() {
-      const equipmenstatusPo = Object.assign({}, this.pageData.equipmenstatusPo)
-      equipmenstatusPo.collectionTime = moment(equipmenstatusPo.collectionTime, 'YYYYMMDDHHmmss').format('YYYY-MM-DD HH:mm:ss')
-      return equipmenstatusPo
+    equipmentStatusInfo() {
+      const equipmentStatusInfo = Object.assign({}, this.pageData.equipmentStatusInfo)
+      equipmentStatusInfo.collectionTime = moment(equipmentStatusInfo.collectionTime, 'YYYYMMDDHHmmss').format('YYYY-MM-DD HH:mm:ss')
+      return equipmentStatusInfo
     }
   },
   watch: {},

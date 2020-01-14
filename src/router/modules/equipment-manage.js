@@ -10,7 +10,7 @@ const equipmentManageRouter = {
   alwaysShow: true,
   meta: {
     title: '设备管理',
-    icon: 'icon_equipment_list'
+    icon: 'uique'
   },
   children: [
     {

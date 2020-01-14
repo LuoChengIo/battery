@@ -16,19 +16,19 @@
             <div class="extremum-title">最高电压</div>
             <div class="extremum-item e1">
               最高单体电压电池箱编号
-              <span class="bianhao">{{ equipmenlimitPo.highVoltageSysNo }}</span>
+              <span class="bianhao">{{ equipmentLimitInfo.highVoltageSysNo }}</span>
             </div>
             <div class="extremum-item e1">
               最高单体电压电池单体编号
-              <span class="bianhao">{{ equipmenlimitPo.highVoltageOneBatteryNo }}</span>
+              <span class="bianhao">{{ equipmentLimitInfo.highVoltageOneBatteryNo }}</span>
             </div>
             <div class="extremum-item e1">
               最高单体电压值
-              <span class="bianhao">{{ equipmenlimitPo.oneBatteryVoltageHigh }}V</span>
+              <span class="bianhao">{{ equipmentLimitInfo.oneBatteryVoltageHigh }}V</span>
             </div>
             <div class="extremum-item e1">
               最高单体温度电池箱编号
-              <span class="bianhao">{{ equipmenlimitPo.highTemperatureSysNo }}</span>
+              <span class="bianhao">{{ equipmentLimitInfo.highTemperatureSysNo }}</span>
             </div>
           </div>
         </el-col>
@@ -37,19 +37,19 @@
             <div class="extremum-title">最低电压</div>
             <div class="extremum-item e2">
               最低单体电压电池单体编号
-              <span class="bianhao">{{ equipmenlimitPo.lowVoltageSysNo }}</span>
+              <span class="bianhao">{{ equipmentLimitInfo.lowVoltageSysNo }}</span>
             </div>
             <div class="extremum-item e2">
               最低单体电压电池箱编号
-              <span class="bianhao">{{ equipmenlimitPo.lowVoltageSysNo }}</span>
+              <span class="bianhao">{{ equipmentLimitInfo.lowVoltageSysNo }}</span>
             </div>
             <div class="extremum-item e2">
               最低单体电压值
-              <span class="bianhao">{{ equipmenlimitPo.oneBatteryVoltageLow }}V</span>
+              <span class="bianhao">{{ equipmentLimitInfo.oneBatteryVoltageLow }}V</span>
             </div>
             <div class="extremum-item e2">
               最低单体温度电池单体编号
-              <span class="bianhao">{{ equipmenlimitPo.highTemperatureProbeNo }}</span>
+              <span class="bianhao">{{ equipmentLimitInfo.highTemperatureProbeNo }}</span>
             </div>
           </div>
         </el-col>
@@ -57,7 +57,7 @@
       <div class="extremum-card mt24">
         <div class="extremum-sdt">
           <img class="vm mr10" src="~@/assets/detailed-data/yc.png" alt="" srcset="">
-          压差值 {{ equipmenlimitPo.voltageDifference }} V
+          压差值 {{ equipmentLimitInfo.voltageDifference }} V
         </div>
       </div>
     </div>
@@ -73,11 +73,11 @@
             <div class="extremum-title">最高温度</div>
             <div class="extremum-item e3">
               最高单体温度电池单体编号
-              <span class="bianhao">{{ equipmenlimitPo.highTemperatureSysNo }}</span>
+              <span class="bianhao">{{ equipmentLimitInfo.highTemperatureSysNo }}</span>
             </div>
             <div class="extremum-item e3">
               最高单体温度值
-              <span class="bianhao">{{ equipmenlimitPo.highTemperature }} ℃</span>
+              <span class="bianhao">{{ equipmentLimitInfo.highTemperature }} ℃</span>
             </div>
           </div>
         </el-col>
@@ -86,11 +86,11 @@
             <div class="extremum-title">最低温度</div>
             <div class="extremum-item e4">
               最低单体温度电池箱编号
-              <span class="bianhao"> {{ equipmenlimitPo.lowTemperatureSysNo }}</span>
+              <span class="bianhao"> {{ equipmentLimitInfo.lowTemperatureSysNo }}</span>
             </div>
             <div class="extremum-item e4">
               最低单体温度值
-              <span class="bianhao">{{ equipmenlimitPo.lowTemperature }} ℃</span>
+              <span class="bianhao">{{ equipmentLimitInfo.lowTemperature }} ℃</span>
             </div>
           </div>
         </el-col>
@@ -98,7 +98,7 @@
       <div class="extremum-card mt24">
         <div class="extremum-sdt">
           <img class="vm mr10" src="~@/assets/detailed-data/wc.png" alt="" srcset="">
-          温度差 {{ equipmenlimitPo.temperatureDifference }} ℃
+          温度差 {{ equipmentLimitInfo.temperatureDifference }} ℃
         </div>
       </div>
     </div>
@@ -121,8 +121,8 @@ export default {
     }
   },
   computed: {
-    equipmenlimitPo() {
-      return this.pageData.equipmenlimitPo
+    equipmentLimitInfo() {
+      return this.pageData.equipmentLimitInfo
     }
   },
   watch: {},
