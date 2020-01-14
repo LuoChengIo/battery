@@ -92,7 +92,7 @@ export default {
       }
       data.forEach(element => {
         if (element.staticsDate) {
-          xAxisData.push(moment(element.staticsDate, 'YYYYMMDDHH').format('MM/DD'))
+          xAxisData.push(moment(element.staticsDate, 'YYYYMMDDHH').format('DD'))
           seriesData.data1.push(element.alarmLevel1 || 0)
           seriesData.data2.push(element.alarmLevel2 || 0)
           seriesData.data3.push(element.alarmLevel3 || 0)
@@ -105,13 +105,17 @@ export default {
           axisLabel: { // 刻度样式
             show: true,
             textStyle: {
-              color: '#848E98',
-              fontSize: 8
+              color: '#fff',
+              fontSize: 12,
+              width: '50px'
             }
           },
           boundaryGap: false,
           axisLine: {
-            show: false
+            show: true,
+            lineStyle: {
+              color: '#fff'
+            }
           },
           axisTick: {
             show: false
@@ -136,21 +140,21 @@ export default {
           backgroundColor: 'rgba(0,28,55,0.75)',
           padding: 10
         },
-        legend: {
-          left: 'center',
+        legend: [{ //
           icon: 'circle',
           itemWidth: 14,
           itemHeight: 10,
           itemGap: 12,
+          left: 'center',
           bottom: 10,
           textStyle: {
             fontSize: 12,
             color: '#fff'
           }
-        },
+        }],
         grid: { // 布局
           left: 10,
-          right: 10,
+          right: 50,
           bottom: 50,
           top: 30,
           containLabel: true
@@ -165,7 +169,15 @@ export default {
               color: '#fff'
             }
           },
-          splitLine: { // 虚线
+          axisLabel: { // 刻度样式
+            show: false,
+            textStyle: {
+              color: '#fff',
+              fontSize: 12
+            }
+          },
+          // 虚线
+          splitLine: {
             lineStyle: {
               type: 'dashed',
               color: '#fff'
