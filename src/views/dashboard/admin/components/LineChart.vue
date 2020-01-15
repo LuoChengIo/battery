@@ -204,9 +204,9 @@ export default {
         {
           name: '二级警告', itemStyle: {
             normal: {
-              color: '##FE761E',
+              color: '#FE761E',
               lineStyle: {
-                color: 'FE761E',
+                color: '#FE761E',
                 width: 1
               }
             }
