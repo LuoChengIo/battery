@@ -1,7 +1,7 @@
 {
   "name": "admin",
   "version": "4.1.0",
-  "description": "中交管理系统",
+  "description": "电池管理系统",
   "author": "",
   "license": "MIT",
   "scripts": {

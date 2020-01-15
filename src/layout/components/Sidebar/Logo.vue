@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      title: '中交管理系统',
+      title: '电池管理系统',
       errorGoodsImg: `this.src= '${require('@/assets/logo.png')}'`
     }
   },
