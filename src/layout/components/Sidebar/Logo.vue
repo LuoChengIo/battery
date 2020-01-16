@@ -1,6 +1,6 @@
 <template>
-  <div class="sidebar-logo-container" :class="{ collapse: collapse }">
-    <transition name="sidebarLogoFade">
+  <div class="navbar" :class="{ collapse: collapse }">
+    <!-- <transition name="sidebarLogoFade">
       <router-link
         v-if="collapse"
         key="collapse"
@@ -10,9 +10,11 @@
         <img :onerror="errorGoodsImg" :src="userInfo.companyLogoUrl" class="sidebar-logo">
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img :onerror="errorGoodsImg" :src="userInfo.companyLogoUrl" class="sidebar-logo">
+
       </router-link>
-    </transition>
+    </transition> -->
+    <!-- <img :onerror="errorGoodsImg" class="sidebar-logo sidebar-logo-link"> -->
+    <img class="logo" :src="userInfo.companyLogoUrl|| errorGoodsImg" alt="" srcset="">
   </div>
 </template>
 
@@ -39,49 +41,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sidebarLogoFade-enter-active {
-  transition: opacity 1.5s;
-}
-
-.sidebarLogoFade-enter,
-.sidebarLogoFade-leave-to {
-  opacity: 0;
-}
-
-.sidebar-logo-container {
-  position: relative;
-  width: 100%;
-  height: 160px;
-  line-height: 100px;
-  padding: 30px;
-  text-align: center;
+.navbar {
+  height:100px;
   overflow: hidden;
-  & .sidebar-logo-link {
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    & .sidebar-logo {
-      max-width: 120px;
-      max-height: 100px;
-      vertical-align: middle;
-    }
-
-    & .sidebar-title {
-      display: inline-block;
-      margin: 0;
-      color: #fff;
-      font-weight: 600;
-      line-height: 50px;
-      font-size: 14px;
-      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
-      vertical-align: middle;
-    }
+  position: relative;
+  background: rgb(40, 44, 53);;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  .logo{
+    margin-top: 36px;
+    margin-left: 54px;
+    display: inline-block;
+    height: 28px;
+    width: auto;
   }
-
-  &.collapse {
-    .sidebar-logo {
-      margin-right: 0px;
-    }
   }
-}
 </style>

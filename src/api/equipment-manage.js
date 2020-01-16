@@ -67,7 +67,7 @@ export function equipmentIn(data) {
 export function getEquipment(data) {
   return request({
     url: '/paramsManage/query',
-    method: 'post',
+    method: 'get',
     data
   })
 }
