@@ -83,7 +83,7 @@
         />
         <el-table-column
           align="center"
-          prop="updatetime"
+          prop="addtime"
           label="创建时间"
           width="180px"
           :formatter="dateFormat"
@@ -147,8 +147,8 @@
       width="400px"
     >
       <el-form ref="addEditFrom" :rules="rules" label-width="90px" :model="formInline" class="custom-from">
-        <el-form-item label="设备编号" prop="equipmentId">
-          <el-input v-model="formInline.equipmentId" placeholder="" />
+        <el-form-item label="设备编号" prop="equipmentNo">
+          <el-input v-model="formInline.equipmentNo" placeholder="" />
         </el-form-item>
         <el-form-item label="设备名称" prop="equipmentName">
           <el-input v-model="formInline.equipmentName" maxlength="30" placeholder="" />
@@ -163,8 +163,8 @@
             />
           </el-select>
         </el-form-item>
-        <el-form-item class="no-margin" label="所属用户" prop="adduserid">
-          <el-select v-model="formInline.adduserid" filterable placeholder="请选择">
+        <el-form-item class="no-margin" label="所属用户" prop="addUserId">
+          <el-select v-model="formInline.addUserId" filterable placeholder="请选择">
             <el-option
               v-for="item in userList"
               :key="item.userId"
@@ -212,13 +212,13 @@ export default {
       dialogTitle: '',
       formInline: {
         id: '',
-        equipmentId: '',
+        equipmentNo: '',
         companyName: '',
         equipmentName: '',
-        adduserid: ''
+        addUserId: ''
       },
       rules: {
-        equipmentId: [
+        equipmentNo: [
           { required: true, message: '请输入设备id', trigger: 'blur' }
         ],
         equipmentName: [
@@ -227,7 +227,7 @@ export default {
         companyName: [
           { required: true, message: '请选择所属公司', trigger: 'change' }
         ],
-        adduserid: [
+        addUserId: [
           { required: true, message: '请选择所属用户', trigger: 'change' }
         ]
       },
@@ -301,19 +301,19 @@ export default {
         // 添加角色
         this.formInline = {
           id: '',
-          equipmentId: '',
+          equipmentNo: '',
           companyName: '',
           equipmentName: '',
-          adduserid: ''
+          addUserId: ''
         }
         this.dialogTitle = '新建设备'
       } else if (type === 2) {
         this.formInline = {
           id: item.id,
-          equipmentId: item.equipmentId,
+          equipmentNo: item.equipmentNo,
           companyName: item.companyName,
           equipmentName: item.equipmentName,
-          adduserid: item.adduserid
+          addUserId: item.addUserId
         }
         this.dialogTitle = '编辑设备'
         getUserList({
@@ -363,7 +363,7 @@ export default {
       })
     },
     companyChange(val) {
-      this.formInline.adduserid = ''
+      this.formInline.addUserId = ''
       this.userList = []
       getUserList({
         ascriptionCompanyName: val,

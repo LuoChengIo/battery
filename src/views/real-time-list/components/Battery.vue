@@ -18,17 +18,18 @@
         </span></div>
       <div class="dib f24 ml40 mr40">
         <img class="vm mr10" src="~@/assets/detailed-data/sj-10.png" alt="" srcset="">
-        <span>温度点数<span class="ml15">{{ activeItem.probeNumber }}V</span>
+        <span>温度点数<span class="ml15">{{ activeItem.probeNumber }}</span>
         </span></div>
     </div>
-    <el-row :gutter="24">
-      <el-col v-for="(item, index) in activeItem.batteryVoltages" :key="item.id" :span="6">
+    <el-row>
+      <el-col v-for="(item, index) in activeItem.batteryVoltages" v-show="index<4||isMore" :key="item.id" class="p12" :span="6">
         <div class="voltage-content" :data-index="index">
           <div class="f16 mb24">电压<span class="ml10">{{ item.oneBatteryVolage }}V</span></div>
           <div class="f16">温度<span class="ml10">{{ activeItem.batteryProbes[index].oneProbeTemperature }}℃</span></div>
         </div>
       </el-col>
     </el-row>
+    <div class="more-tip tc poi p10" @click="isMore=!isMore">{{ isMore?'收起':'查看更多' }}</div>
   </div>
 </template>
 
@@ -46,7 +47,8 @@ export default {
   data() {
     return {
       activeItem: {},
-      activeIndex: 0
+      activeIndex: 0,
+      isMore: false
     }
   },
   computed: {
@@ -77,6 +79,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.p12{
+  padding:12px;
+}
 .battery-ct{
   padding: 30px 50px;
 }

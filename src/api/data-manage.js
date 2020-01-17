@@ -16,11 +16,11 @@ export function listDetails(params) {
   })
 }
 // 统计分析-数据导出
-export function exportData(data) {
+export function exportData(params) {
   return request({
     url: '/data/month/export',
     method: 'get',
-    data
+    params
   })
 }
 

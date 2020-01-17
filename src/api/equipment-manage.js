@@ -64,11 +64,11 @@ export function equipmentIn(data) {
   }
   
 // 设备管理-  设备搜索接口
-export function getEquipment(data) {
+export function getEquipment(params) {
   return request({
     url: '/paramsManage/query',
     method: 'get',
-    data
+    params
   })
 }
 // 设备管理- 读取设备信息
