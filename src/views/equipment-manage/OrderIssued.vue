@@ -436,6 +436,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .my-inline-form /deep/{
+  padding: 28px 24px 8px 24px;
   .el-form-item__content,.el-form-item{
     vertical-align: middle;
   }
@@ -474,7 +475,7 @@ export default {
     background:rgba(51,55,64,1);
     border-bottom: 2px solid #282C35;
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     .el-icon-arrow-right:before{
       content: "\e792";
     }
@@ -485,7 +486,6 @@ export default {
   .el-collapse-item__wrap{
     background:rgba(44,48,57,1);
     border-bottom: none;
-    padding: 28px 24px 8px 24px;
   }
   .el-collapse-item__content{
     padding-bottom: 0;

@@ -28,7 +28,7 @@
     </div>
     <!-- 图表 -->
     <div class="w-card mt20 p10 pb20">
-      <h5 class="f24 n chart-title text-white">
+      <h5 class="f20 n chart-title text-white">
         <img class="vm" src="~@/assets/tjsj.png" alt="" srcset="">
         <span class="mr10 vm">设备数据日趋势</span>
         <el-radio-group v-model="chartType" slot-scope="" class="r" size="small">

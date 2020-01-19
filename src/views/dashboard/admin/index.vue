@@ -4,8 +4,9 @@
     <div class="mt24">
       <div class="w-card left-ct p24">
         <div class="model w66">
-          <img src="@/assets/icon_warning01@2x.png" class="img-icon">
-          <h5 class="f24 n title">警告数量</h5>
+          <h5 class="f0 n title"><img src="@/assets/icon_warning01@2x.png" class="img-icon">
+            <span class="f18 vm">警告数量</span>
+          </h5>
           <line-chart :chart-data="lineChartData" />
         </div>
         <div class="model  w33">
@@ -23,11 +24,11 @@
             {{ item.yearonyear }}
           </el-col>
           </el-row> -->
-          <div v-for="(item,index) in warningData" :key="index" class="warning-card">
+          <router-link :to="{ path: '/real/time-list', query: { failure: item.value }}" v-for="(item,index) in warningData" :key="index" class="warning-card poi" tag="div">
             <img class="warn-icon vm mr15" :src="item.imgsrc" alt="" srcset="">
             <span class="dib vm mr15" style="width:56px;">{{ item.title }}</span>
             <span :class="item.myclass">{{ item.quantity }}</span>
-          </div>
+          </router-link>
         </div>
       </div>
       <div class="mt24">
@@ -38,15 +39,13 @@
         <el-row :gutter="24">
           <el-col :span="12">
             <div class="w-card p10">
-              <img src="@/assets/data.png" class="img-icon">
-              <h5 class="f24 n title">设备在线状态</h5>
+              <h5 class="f0 n title"><img src="@/assets/data.png" class="img-icon"><span class="f18 vm">设备在线状态</span></h5>
               <pie-chart2 :chart-data="pieChartData1" />
             </div>
           </el-col>
           <el-col :span="12">
             <div class="w-card p10">
-              <img src="@/assets/data1.png" class="img-icon">
-              <h5 class="f24 n title">设备充电状态</h5>
+              <h5 class="f0 n title"><img src="@/assets/data1.png" class="img-icon"><span class="f18 vm">设备充电状态</span></h5>
               <pie-chart :chart-data="pieChartData2" />
             </div>
           </el-col>
@@ -65,7 +64,7 @@ import PieChart from './components/PieChart'
 import PieChart2 from './components/PieChart2'
 const warningData = [{
   imgsrc: require('@/assets/icon_warning01@2x.png'),
-  title: '一级警告',
+  title: '一级报警',
   key: 'alarmLevel1',
   value: '1',
   quantity: '0',
@@ -73,7 +72,7 @@ const warningData = [{
   myclass: 'warn-text1'
 }, {
   imgsrc: require('@/assets/icon_warning02@2x.png'),
-  title: '二级警告',
+  title: '二级报警',
   key: 'alarmLevel2',
   value: '2',
   quantity: '0',
@@ -81,7 +80,7 @@ const warningData = [{
   myclass: 'warn-text2'
 }, {
   imgsrc: require('@/assets/icon_warning03@2x.png'),
-  title: '三级警告',
+  title: '三级报警',
   key: 'alarmLevel3',
   value: '3',
   quantity: '0',
@@ -173,7 +172,6 @@ export default {
   .title{
     position: relative;
     color:#F4FBFF;
-    padding-left: 36px;
     &::after{
       content: '';
       position:absolute;
@@ -203,7 +201,9 @@ export default {
     }
   }
   .img-icon{
-    position: absolute;
+    margin-right: 5px;
+    vertical-align: middle;
+    height: 100%;
   }
   .w66{
     width: 66%;

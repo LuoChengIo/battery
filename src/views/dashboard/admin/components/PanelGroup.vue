@@ -166,7 +166,7 @@ export default {
       margin: 10px 0 0 25px;
       .card-panel-text {
         line-height: 20px;
-        font-size: 20px;
+        font-size: 18px;
         margin-top: 30px ;
         color: #89D0FC;
         font-weight: normal;
