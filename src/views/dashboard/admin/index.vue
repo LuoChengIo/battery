@@ -24,7 +24,7 @@
             {{ item.yearonyear }}
           </el-col>
           </el-row> -->
-          <router-link :to="{ path: '/real/time-list', query: { failure: item.value }}" v-for="(item,index) in warningData" :key="index" class="warning-card poi" tag="div">
+          <router-link v-for="(item,index) in warningData" :key="index" :to="{ path: '/real/time-list', query: { failure: item.value }}" class="warning-card poi" tag="div">
             <img class="warn-icon vm mr15" :src="item.imgsrc" alt="" srcset="">
             <span class="dib vm mr15" style="width:56px;">{{ item.title }}</span>
             <span :class="item.myclass">{{ item.quantity }}</span>
