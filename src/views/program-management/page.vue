@@ -31,7 +31,7 @@
             >
               <img class="img-btn" src="@/assets/program-management/shangchuan.png" title="上传">
             </el-upload>
-            <img v-if="scope.row.state == 2" class="img-btn" src="@/assets/program-management/fasong.png" title="发布正式版" @click="releaseVersion(scope.row)">
+            <img v-if="scope.row.state == 2" class="img-btn" src="@/assets/program-management/fasong.png" title="发布" @click="releaseVersion(scope.row)">
           </template>
         </el-table-column>
       </el-table>

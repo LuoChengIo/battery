@@ -363,7 +363,7 @@ export default {
           if (isNaN(value)) { // 不是数字
             return true
           }
-          if (!Number.isInteger(value) && element.text.indexOf('0.') === -1) { // 只能输入整形的填入了小数
+          if (!Number.isInteger(value) && !element.float) { // 只能输入整形的填入了小数
             return true
           }
         }
