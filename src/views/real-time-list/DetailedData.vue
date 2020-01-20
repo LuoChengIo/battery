@@ -38,7 +38,7 @@
     <div v-if="deviceInfo.equipmentStatusInfo">
       <component :is="item.components" v-for="item in tabList" :key="item.id" class="mt24" :page-data="deviceInfo" />
     </div>
-
+    <battery />
   </div>
 </template>
 

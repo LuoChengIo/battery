@@ -74,9 +74,10 @@ export default {
       data.forEach((element, index) => {
         let num = 0
         if (allCount) {
-          num = Math.round(element.value / allCount * 10000) / 100.00
+          num = Math.round(element.value / allCount * 10000) / 100
           if (index === data.length - 1) {
             num = 100 - nums
+            num = Math.round(num * 100) / 100
           }
           nums += num
         }

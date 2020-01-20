@@ -9,20 +9,21 @@ const dataRouter = {
   name: 'dataManage',
   meta: {
     title: '数据管理',
-    icon: 'history'
+    icon: 'history',
+    functionId: '003'
   },
   children: [
     {
       path: 'day-statistics',
       component: () => import('@/views/data-manage/Statistics.vue'), // Parent router-view
       name: 'Statistics',
-      meta: { title: '数据统计' }
+      meta: { title: '数据统计', functionId: '003001' }
     },
     {
       path: 'inquire',
       name: 'Inquire',
       component: () => import('@/views/data-manage/Inquire.vue'),
-      meta: { title: '数据查询' }
+      meta: { title: '数据查询', functionId: '003002' }
     }
   ]
 }

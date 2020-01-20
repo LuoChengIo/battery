@@ -19,7 +19,7 @@
           </template>
         </el-table-column>
         <el-table-column align="center" prop="addtime" sortable label="操作时间" :formatter="dateFormat" />
-        <el-table-column align="center" prop="data1" label="操作" width="130">
+        <el-table-column align="center" prop="data1" label="操作" width="130" class="tc">
           <template slot-scope="scope">
             <el-upload
               class="upload-demo"
@@ -31,7 +31,7 @@
             >
               <img class="img-btn" src="@/assets/program-management/shangchuan.png" title="上传">
             </el-upload>
-            <img v-if="scope.row.state == 2" class="img-btn" src="@/assets/program-management/fasong.png" title="发布" @click="releaseVersion(scope.row)">
+            <img v-if="scope.row.state == 1" class="img-btn" src="@/assets/program-management/fasong.png" title="发布" @click="releaseVersion(scope.row)">
           </template>
         </el-table-column>
       </el-table>

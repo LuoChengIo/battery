@@ -6,10 +6,16 @@ import { asyncRoutes, constantRoutes } from '@/router'
  * @param route
  */
 function hasPermission(roles, route) {
-  if (route.meta && route.meta.title) {
-    return roles.filter(role => {
-      return route.meta.title === role.functionName
+  if (route.meta && route.meta.functionId) {
+    const arr = roles.filter(role => {
+      return route.meta.functionId === role.functionId
     })
+    arr.forEach(element => {
+      if (route.meta.functionId === element.functionId) {
+        route.meta.title = element.functionName
+      }
+    })
+    return arr
   } else {
     return []
   }
@@ -23,6 +29,7 @@ function hasPermission(roles, route) {
 export function filterAsyncRoutes(routes, roles) {
   const res = []
   routes.forEach(route => {
+    console.log(route)
     const tmp = { ...route }
     const rols = hasPermission(roles, tmp)
     if (rols.length) {
